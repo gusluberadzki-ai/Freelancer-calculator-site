@@ -1,0 +1,42 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Hourly Rate Calculator: What Should I Charge? | RateKit</title>
+<meta name="description" content="Work out the hourly rate you need to hit your income goal after expenses, taxes, holidays and unbillable time.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/income-sites/freelance-calc/hourly-rate-calculator.html">
+<meta property="og:title" content="Freelance Hourly Rate Calculator: What Should I Charge?"><meta property="og:description" content="Work out the hourly rate you need to hit your income goal after expenses, taxes, holidays and unbillable time.">
+<link rel="stylesheet" href="style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once the account is approved -->
+</head><body>
+<header><a class="logo" href="./">Rate<span>Kit</span></a>
+<nav><a href="./">All calculators</a></nav></header><main>
+<h1>Freelance hourly rate calculator</h1><p class="lead">Work out the hourly rate you need to hit your income goal after expenses, taxes, holidays and unbillable time.</p>
+<section class="calc"><div class="grid"><div><label for="income">Take-home income you want per year </label><input id="income" type="number" inputmode="decimal" step="any" value="60000"></div><div><label for="expenses">Business expenses per year <small>(software, equipment, insurance)</small></label><input id="expenses" type="number" inputmode="decimal" step="any" value="6000"></div><div><label for="tax">Tax rate <small>(%, rough total)</small></label><input id="tax" type="number" inputmode="decimal" step="any" value="25"></div><div><label for="weeks">Weeks off per year <small>(holidays + sick days)</small></label><input id="weeks" type="number" inputmode="decimal" step="any" value="6"></div><div><label for="hours">Hours worked per week </label><input id="hours" type="number" inputmode="decimal" step="any" value="40"></div><div><label for="billable">Share of hours you can bill <small>(%, admin and sales eat the rest)</small></label><input id="billable" type="number" inputmode="decimal" step="any" value="65"></div>
+<div><label for="cur">Currency</label><select id="cur"><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="PLN">PLN zł</option><option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="INR">INR ₹</option></select></div></div>
+<div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div>
+<h2>How this hourly rate is calculated</h2>
+<p>Most new freelancers take their old salary, divide by 2,080 hours and end up badly underpaid. That number ignores three things: you pay your own taxes and expenses, you don't get paid holidays, and a big chunk of your week goes on unbillable work like admin, invoicing and finding clients.</p>
+<p>This calculator starts from the take-home income you want, grosses it up for tax, adds your business expenses, then divides by the hours you can actually bill. The result is your <strong>floor</strong>: charge less and you miss your goal.</p>
+<h2>What share of time is billable?</h2>
+<p>Established freelancers with steady clients often bill 70 to 80% of their working hours. If you're just starting out and spend a lot of time on sales, 50 to 60% is more realistic.</p>
+<h2>Frequently asked questions</h2><details><summary>Should I charge hourly or per project?</summary><p>Hourly is safest when the scope is unclear. Once you can estimate well, per-project pricing lets you earn more by working faster. Use your hourly floor to sanity-check every project quote.</p></details><details><summary>Is this rate before or after tax?</summary><p>The result is what you invoice, before tax. The calculator already adds your tax rate on top of the take-home income you entered.</p></details><details><summary>How often should I raise my rate?</summary><p>Review it at least once a year, and raise it whenever you&#x27;re consistently fully booked.</p></details>
+<h2>More calculators</h2><div class="cards"><a href="salary-to-hourly.html"><strong>Salary ↔ hourly</strong><span>Convert an annual salary into hourly, daily, weekly and monthly pay, o…</span></a><a href="contractor-vs-employee.html"><strong>Contractor vs employee</strong><span>Find the contract day or hourly rate that matches a salaried job once …</span></a><a href="tax-set-aside-calculator.html"><strong>Tax set-aside</strong><span>See how much of each invoice to put aside for tax so the bill never su…</span></a><a href="project-price-calculator.html"><strong>Project price</strong><span>Turn an hours estimate into a fixed-price quote with a buffer for revi…</span></a><a href="late-payment-calculator.html"><strong>Late payment fee</strong><span>Work out the interest and late fee on an overdue invoice.…</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Should I charge hourly or per project?", "acceptedAnswer": {"@type": "Answer", "text": "Hourly is safest when the scope is unclear. Once you can estimate well, per-project pricing lets you earn more by working faster. Use your hourly floor to sanity-check every project quote."}}, {"@type": "Question", "name": "Is this rate before or after tax?", "acceptedAnswer": {"@type": "Answer", "text": "The result is what you invoice, before tax. The calculator already adds your tax rate on top of the take-home income you entered."}}, {"@type": "Question", "name": "How often should I raise my rate?", "acceptedAnswer": {"@type": "Answer", "text": "Review it at least once a year, and raise it whenever you're consistently fully booked."}}]}</script>
+<script>
+const IDS=["income", "expenses", "tax", "weeks", "hours", "billable"];
+function money(n){const c=document.getElementById('cur').value;
+try{return new Intl.NumberFormat(undefined,{style:'currency',currency:c,maximumFractionDigits:n<100?2:0}).format(isFinite(n)?n:0)}catch(e){return n.toFixed(2)}}
+function calc(v){const gross=(v.income/(1-v.tax/100))+v.expenses;
+const billH=(52-v.weeks)*v.hours*(v.billable/100);
+const rate=gross/billH;
+return {big:money(rate),label:'minimum hourly rate',rows:[
+['Revenue needed per year',money(gross)],['Billable hours per year',Math.round(billH)],
+['Day rate (8h)',money(rate*8)],['Monthly revenue target',money(gross/12)]]};}
+function run(){const v={};IDS.forEach(i=>v[i]=parseFloat(document.getElementById(i).value)||0);
+const r=calc(v);document.getElementById('big').textContent=r.big;document.getElementById('lbl').textContent=r.label;
+document.getElementById('rows').innerHTML=r.rows.map(x=>'<tr><td>'+x[0]+'</td><td>'+x[1]+'</td></tr>').join('');
+try{localStorage.setItem('rk-cur',document.getElementById('cur').value)}catch(e){}}
+try{const s=localStorage.getItem('rk-cur');if(s)document.getElementById('cur').value=s}catch(e){}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',run));run();
+</script></main><footer>RateKit offers free calculators for freelancers and contractors. Results are estimates, not financial or tax advice.
+· <a href="privacy.html">Privacy</a></footer></body></html>

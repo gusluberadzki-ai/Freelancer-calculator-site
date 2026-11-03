@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salary to Hourly Calculator (and Hourly to Salary) | RateKit</title>
+<meta name="description" content="Convert an annual salary into hourly, daily, weekly and monthly pay, or work backwards from an hourly wage.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/income-sites/freelance-calc/salary-to-hourly.html">
+<meta property="og:title" content="Salary to Hourly Calculator (and Hourly to Salary)"><meta property="og:description" content="Convert an annual salary into hourly, daily, weekly and monthly pay, or work backwards from an hourly wage.">
+<link rel="stylesheet" href="style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once the account is approved -->
+</head><body>
+<header><a class="logo" href="./">Rate<span>Kit</span></a>
+<nav><a href="./">All calculators</a></nav></header><main>
+<h1>Salary to hourly converter</h1><p class="lead">Convert an annual salary into hourly, daily, weekly and monthly pay, or work backwards from an hourly wage.</p>
+<section class="calc"><div class="grid"><div><label for="salary">Annual salary <small>(leave 0 to use hourly)</small></label><input id="salary" type="number" inputmode="decimal" step="any" value="50000"></div><div><label for="hourly">Or hourly wage <small>(used if salary is 0)</small></label><input id="hourly" type="number" inputmode="decimal" step="any" value="0"></div><div><label for="hours">Hours per week </label><input id="hours" type="number" inputmode="decimal" step="any" value="40"></div><div><label for="weeks">Paid weeks per year </label><input id="weeks" type="number" inputmode="decimal" step="any" value="52"></div>
+<div><label for="cur">Currency</label><select id="cur"><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="PLN">PLN zł</option><option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="INR">INR ₹</option></select></div></div>
+<div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div>
+<h2>The quick formula</h2>
+<p>For a standard 40-hour week with 52 paid weeks, a year has 2,080 working hours. Divide the salary by 2,080 to get the hourly wage, or multiply an hourly wage by 2,080 to get the annual salary. A quick mental shortcut: <strong>halve the salary and drop the thousands</strong>. $50,000 a year is roughly $25 an hour.</p>
+<h2>Going freelance?</h2>
+<p>An employee's hourly wage is not the same as a freelance rate. Freelancers pay for their own holidays, equipment and taxes, so they typically need 1.5 to 2 times the equivalent hourly wage. Use the <a href="contractor-vs-employee.html">contractor vs employee calculator</a> to compare properly.</p>
+<h2>Frequently asked questions</h2><details><summary>How many working hours are in a year?</summary><p>2,080 at 40 hours a week for 52 weeks. If you only count weeks actually worked (for example 47 after holidays), it&#x27;s 1,880.</p></details><details><summary>Does this include tax?</summary><p>No. It converts gross pay. Your take-home pay depends on where you live.</p></details>
+<h2>More calculators</h2><div class="cards"><a href="hourly-rate-calculator.html"><strong>Hourly rate</strong><span>Work out the hourly rate you need to hit your income goal after expens…</span></a><a href="contractor-vs-employee.html"><strong>Contractor vs employee</strong><span>Find the contract day or hourly rate that matches a salaried job once …</span></a><a href="tax-set-aside-calculator.html"><strong>Tax set-aside</strong><span>See how much of each invoice to put aside for tax so the bill never su…</span></a><a href="project-price-calculator.html"><strong>Project price</strong><span>Turn an hours estimate into a fixed-price quote with a buffer for revi…</span></a><a href="late-payment-calculator.html"><strong>Late payment fee</strong><span>Work out the interest and late fee on an overdue invoice.…</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How many working hours are in a year?", "acceptedAnswer": {"@type": "Answer", "text": "2,080 at 40 hours a week for 52 weeks. If you only count weeks actually worked (for example 47 after holidays), it's 1,880."}}, {"@type": "Question", "name": "Does this include tax?", "acceptedAnswer": {"@type": "Answer", "text": "No. It converts gross pay. Your take-home pay depends on where you live."}}]}</script>
+<script>
+const IDS=["salary", "hourly", "hours", "weeks"];
+function money(n){const c=document.getElementById('cur').value;
+try{return new Intl.NumberFormat(undefined,{style:'currency',currency:c,maximumFractionDigits:n<100?2:0}).format(isFinite(n)?n:0)}catch(e){return n.toFixed(2)}}
+function calc(v){const yearH=v.hours*v.weeks;
+const year=v.salary>0?v.salary:v.hourly*yearH;
+const hr=year/yearH;
+return {big:money(v.salary>0?hr:year),label:v.salary>0?'per hour':'per year',rows:[
+['Hourly',money(hr)],['Daily (8h)',money(hr*8)],['Weekly',money(hr*v.hours)],
+['Monthly',money(year/12)],['Yearly',money(year)]]};}
+function run(){const v={};IDS.forEach(i=>v[i]=parseFloat(document.getElementById(i).value)||0);
+const r=calc(v);document.getElementById('big').textContent=r.big;document.getElementById('lbl').textContent=r.label;
+document.getElementById('rows').innerHTML=r.rows.map(x=>'<tr><td>'+x[0]+'</td><td>'+x[1]+'</td></tr>').join('');
+try{localStorage.setItem('rk-cur',document.getElementById('cur').value)}catch(e){}}
+try{const s=localStorage.getItem('rk-cur');if(s)document.getElementById('cur').value=s}catch(e){}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',run));run();
+</script></main><footer>RateKit offers free calculators for freelancers and contractors. Results are estimates, not financial or tax advice.
+· <a href="privacy.html">Privacy</a></footer></body></html>

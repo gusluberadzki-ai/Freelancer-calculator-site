@@ -1,0 +1,41 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>How Much to Set Aside for Taxes as a Freelancer | RateKit</title>
+<meta name="description" content="See how much of each invoice to put aside for tax so the bill never surprises you.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/income-sites/freelance-calc/tax-set-aside-calculator.html">
+<meta property="og:title" content="How Much to Set Aside for Taxes as a Freelancer"><meta property="og:description" content="See how much of each invoice to put aside for tax so the bill never surprises you.">
+<link rel="stylesheet" href="style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once the account is approved -->
+</head><body>
+<header><a class="logo" href="./">Rate<span>Kit</span></a>
+<nav><a href="./">All calculators</a></nav></header><main>
+<h1>Freelance tax set-aside calculator</h1><p class="lead">See how much of each invoice to put aside for tax so the bill never surprises you.</p>
+<section class="calc"><div class="grid"><div><label for="invoice">Invoice amount </label><input id="invoice" type="number" inputmode="decimal" step="any" value="2500"></div><div><label for="rate">Your total tax rate <small>(%, income + social contributions)</small></label><input id="rate" type="number" inputmode="decimal" step="any" value="28"></div><div><label for="expenses">Deductible expenses in this invoice period </label><input id="expenses" type="number" inputmode="decimal" step="any" value="300"></div><div><label for="buffer">Safety buffer <small>(% extra, optional)</small></label><input id="buffer" type="number" inputmode="decimal" step="any" value="3"></div>
+<div><label for="cur">Currency</label><select id="cur"><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="PLN">PLN zł</option><option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="INR">INR ₹</option></select></div></div>
+<div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div>
+<h2>The simple system</h2>
+<p>Open a separate savings account just for tax. Every time a client pays you, move the amount above into it straight away. When your tax bill arrives, the money is already there.</p>
+<h2>What rate should I use?</h2>
+<p>Use your marginal rate plus any social security or health contributions. If you don't know it, 25 to 30% is a cautious starting point in most countries. The buffer covers surprises, and anything left over at the end of the year is a bonus.</p>
+<p><em>This is a planning tool, not tax advice. Check your actual rates with a local accountant.</em></p>
+<h2>Frequently asked questions</h2><details><summary>What percentage should a freelancer save for taxes?</summary><p>Commonly 25 to 35% of profit, depending on country and income level.</p></details><details><summary>Do I pay tax on the full invoice?</summary><p>Usually only on profit, which is income minus allowable business expenses.</p></details>
+<h2>More calculators</h2><div class="cards"><a href="hourly-rate-calculator.html"><strong>Hourly rate</strong><span>Work out the hourly rate you need to hit your income goal after expens…</span></a><a href="salary-to-hourly.html"><strong>Salary ↔ hourly</strong><span>Convert an annual salary into hourly, daily, weekly and monthly pay, o…</span></a><a href="contractor-vs-employee.html"><strong>Contractor vs employee</strong><span>Find the contract day or hourly rate that matches a salaried job once …</span></a><a href="project-price-calculator.html"><strong>Project price</strong><span>Turn an hours estimate into a fixed-price quote with a buffer for revi…</span></a><a href="late-payment-calculator.html"><strong>Late payment fee</strong><span>Work out the interest and late fee on an overdue invoice.…</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What percentage should a freelancer save for taxes?", "acceptedAnswer": {"@type": "Answer", "text": "Commonly 25 to 35% of profit, depending on country and income level."}}, {"@type": "Question", "name": "Do I pay tax on the full invoice?", "acceptedAnswer": {"@type": "Answer", "text": "Usually only on profit, which is income minus allowable business expenses."}}]}</script>
+<script>
+const IDS=["invoice", "rate", "expenses", "buffer"];
+function money(n){const c=document.getElementById('cur').value;
+try{return new Intl.NumberFormat(undefined,{style:'currency',currency:c,maximumFractionDigits:n<100?2:0}).format(isFinite(n)?n:0)}catch(e){return n.toFixed(2)}}
+function calc(v){const profit=Math.max(0,v.invoice-v.expenses);
+const tax=profit*(v.rate+v.buffer)/100;
+return {big:money(tax),label:'set aside from this invoice',rows:[
+['Taxable profit',money(profit)],['Effective share of invoice',(v.invoice?tax/v.invoice*100:0).toFixed(1)+'%'],
+['Yours to spend',money(v.invoice-tax)]]};}
+function run(){const v={};IDS.forEach(i=>v[i]=parseFloat(document.getElementById(i).value)||0);
+const r=calc(v);document.getElementById('big').textContent=r.big;document.getElementById('lbl').textContent=r.label;
+document.getElementById('rows').innerHTML=r.rows.map(x=>'<tr><td>'+x[0]+'</td><td>'+x[1]+'</td></tr>').join('');
+try{localStorage.setItem('rk-cur',document.getElementById('cur').value)}catch(e){}}
+try{const s=localStorage.getItem('rk-cur');if(s)document.getElementById('cur').value=s}catch(e){}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',run));run();
+</script></main><footer>RateKit offers free calculators for freelancers and contractors. Results are estimates, not financial or tax advice.
+· <a href="privacy.html">Privacy</a></footer></body></html>

@@ -1,0 +1,40 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contractor vs Employee Pay Calculator: Equivalent Rate | RateKit</title>
+<meta name="description" content="Find the contract day or hourly rate that matches a salaried job once benefits, holidays and gaps between contracts are counted.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/income-sites/freelance-calc/contractor-vs-employee.html">
+<meta property="og:title" content="Contractor vs Employee Pay Calculator: Equivalent Rate"><meta property="og:description" content="Find the contract day or hourly rate that matches a salaried job once benefits, holidays and gaps between contracts are counted.">
+<link rel="stylesheet" href="style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once the account is approved -->
+</head><body>
+<header><a class="logo" href="./">Rate<span>Kit</span></a>
+<nav><a href="./">All calculators</a></nav></header><main>
+<h1>Contractor vs employee rate calculator</h1><p class="lead">Find the contract day or hourly rate that matches a salaried job once benefits, holidays and gaps between contracts are counted.</p>
+<section class="calc"><div class="grid"><div><label for="salary">Employee salary offered </label><input id="salary" type="number" inputmode="decimal" step="any" value="60000"></div><div><label for="benefits">Value of benefits <small>(% of salary: pension, health, bonus)</small></label><input id="benefits" type="number" inputmode="decimal" step="any" value="15"></div><div><label for="holiday">Paid holiday days as employee </label><input id="holiday" type="number" inputmode="decimal" step="any" value="25"></div><div><label for="gap">Unpaid weeks between contracts <small>(per year)</small></label><input id="gap" type="number" inputmode="decimal" step="any" value="4"></div><div><label for="costs">Extra contractor costs per year <small>(accountant, insurance, kit)</small></label><input id="costs" type="number" inputmode="decimal" step="any" value="3000"></div>
+<div><label for="cur">Currency</label><select id="cur"><option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="PLN">PLN zł</option><option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="INR">INR ₹</option></select></div></div>
+<div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div>
+<h2>Why contractors charge more</h2>
+<p>A salaried employee gets paid holidays, sick pay, pension contributions and often health cover. A contractor pays for all of that and also has quiet weeks between contracts. That's why a contract day rate that looks high is often worth about the same as a normal salary.</p>
+<p>A common rule of thumb is that the day rate should be at least <strong>salary ÷ 200</strong> to break even, and salary ÷ 150 to come out clearly ahead.</p>
+<h2>Frequently asked questions</h2><details><summary>Is contracting worth it?</summary><p>If your contract rate is well above the equivalent rate shown here, usually yes. If it&#x27;s close, the extra risk and admin may not be worth it.</p></details><details><summary>Does this account for tax differences?</summary><p>No. Tax treatment of contractors differs a lot between countries, so compare after-tax figures with an accountant before deciding.</p></details>
+<h2>More calculators</h2><div class="cards"><a href="hourly-rate-calculator.html"><strong>Hourly rate</strong><span>Work out the hourly rate you need to hit your income goal after expens…</span></a><a href="salary-to-hourly.html"><strong>Salary ↔ hourly</strong><span>Convert an annual salary into hourly, daily, weekly and monthly pay, o…</span></a><a href="tax-set-aside-calculator.html"><strong>Tax set-aside</strong><span>See how much of each invoice to put aside for tax so the bill never su…</span></a><a href="project-price-calculator.html"><strong>Project price</strong><span>Turn an hours estimate into a fixed-price quote with a buffer for revi…</span></a><a href="late-payment-calculator.html"><strong>Late payment fee</strong><span>Work out the interest and late fee on an overdue invoice.…</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is contracting worth it?", "acceptedAnswer": {"@type": "Answer", "text": "If your contract rate is well above the equivalent rate shown here, usually yes. If it's close, the extra risk and admin may not be worth it."}}, {"@type": "Question", "name": "Does this account for tax differences?", "acceptedAnswer": {"@type": "Answer", "text": "No. Tax treatment of contractors differs a lot between countries, so compare after-tax figures with an accountant before deciding."}}]}</script>
+<script>
+const IDS=["salary", "benefits", "holiday", "gap", "costs"];
+function money(n){const c=document.getElementById('cur').value;
+try{return new Intl.NumberFormat(undefined,{style:'currency',currency:c,maximumFractionDigits:n<100?2:0}).format(isFinite(n)?n:0)}catch(e){return n.toFixed(2)}}
+function calc(v){const total=v.salary*(1+v.benefits/100)+v.costs;
+const days=(52-v.gap)*5-v.holiday;
+const day=total/days;
+return {big:money(day),label:'equivalent contract day rate',rows:[
+['Hourly (8h day)',money(day/8)],['Total employee package',money(v.salary*(1+v.benefits/100))],
+['Billable days per year',days],['Contract income needed',money(total)]]};}
+function run(){const v={};IDS.forEach(i=>v[i]=parseFloat(document.getElementById(i).value)||0);
+const r=calc(v);document.getElementById('big').textContent=r.big;document.getElementById('lbl').textContent=r.label;
+document.getElementById('rows').innerHTML=r.rows.map(x=>'<tr><td>'+x[0]+'</td><td>'+x[1]+'</td></tr>').join('');
+try{localStorage.setItem('rk-cur',document.getElementById('cur').value)}catch(e){}}
+try{const s=localStorage.getItem('rk-cur');if(s)document.getElementById('cur').value=s}catch(e){}
+document.querySelectorAll('input,select').forEach(e=>e.addEventListener('input',run));run();
+</script></main><footer>RateKit offers free calculators for freelancers and contractors. Results are estimates, not financial or tax advice.
+· <a href="privacy.html">Privacy</a></footer></body></html>
