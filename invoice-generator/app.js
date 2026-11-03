@@ -1,6 +1,6 @@
 // CONFIG: fill these in once the Pro product exists on Gumroad.
-const PRO_URL = '';         // e.g. https://luberadzki.gumroad.com/l/ratekit-pro
-const PRO_PRODUCT_ID = '';  // Gumroad product ID, used to verify licence keys
+const PRO_URL = 'https://luberadzki.gumroad.com/l/ratekit-pro';
+const PRO_PRODUCT_ID = '02vclgFQ_PI3U5MZhZV6Jw==';
 
 const $ = id => document.getElementById(id);
 const FIELDS = ['from', 'to', 'num', 'cur', 'date', 'due', 'tax', 'disc', 'notes', 'brand'];
