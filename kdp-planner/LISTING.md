@@ -26,4 +26,4 @@ Inside:
 
 **Keywords (7 boxes):** freelancer planner · self employed planner · undated weekly planner · small business planner · income and expense tracker · time tracking log book · gift for freelancers
 **Categories:** Self-Help > Time Management; Business & Money > Small Business & Entrepreneurship
-**Price:** $8.99 (printing a 128-page B&W 6x9 costs about $2.40, leaving roughly $3 royalty per sale on Amazon.com)
+**Price:** $8.99 (Amazon.com print cost for 128 B&W pages is about $2.55, so royalty is about $2.85 per sale: 60% of list price minus print cost)
