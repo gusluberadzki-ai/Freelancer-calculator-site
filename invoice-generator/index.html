@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Invoice Generator: Make a PDF Invoice in Seconds | RateKit</title>
+<meta name="description" content="Free invoice generator for freelancers. Fill in the details, add your logo, and download a professional PDF invoice. No sign-up needed.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/invoice-generator/">
+<link rel="stylesheet" href="../freelance-calc/style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once approved -->
+<style>
+main{max-width:1180px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+@media (max-width:900px){.app{grid-template-columns:minmax(0,1fr)}#inv{padding:22px;position:static}}
+.item>*,.g2>*{min-width:0}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.panel h3{margin:14px 0 8px;font-size:1rem}.panel h3:first-child{margin-top:0}
+textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;min-height:70px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g2>div,.panel>div{margin-bottom:8px}
+.item{display:grid;grid-template-columns:1fr 70px 100px 30px;gap:6px;margin-bottom:6px}
+.item button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:18px}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:11px 18px;font-weight:600;font-size:1rem;background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+/* The invoice itself: always light, like paper */
+#inv{background:#fff;color:#222;border-radius:6px;padding:44px;box-shadow:0 4px 24px rgba(0,0,0,.08);font-size:14px;min-height:700px;position:sticky;top:16px}
+#inv .top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+#inv h2{margin:0;font-size:30px;letter-spacing:.04em;color:var(--brand,#0b6e4f)}
+#inv .logo{max-width:160px;max-height:70px}
+#inv .meta{text-align:right;color:#555;line-height:1.7}
+#inv .parties{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:32px 0;white-space:pre-line}
+#inv .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-bottom:4px}
+#inv table{width:100%;border-collapse:collapse}
+#inv th{text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:#888;border-bottom:2px solid #222;padding:8px 0}
+#inv td{padding:10px 0;border-bottom:1px solid #eee}
+#inv th:not(:first-child),#inv td:not(:first-child){text-align:right}
+#inv .totals{margin-left:auto;width:260px;margin-top:16px}
+#inv .totals div{display:flex;justify-content:space-between;padding:5px 0}
+#inv .totals .grand{border-top:2px solid #222;font-weight:700;font-size:18px;padding-top:10px;margin-top:4px}
+#inv .notes{margin-top:36px;white-space:pre-line;color:#555}
+#inv .brandline{margin-top:40px;font-size:11px;color:#aaa;text-align:center}
+.pro{background:var(--accent-soft);border-radius:10px;padding:14px;margin-top:14px;font-size:.92rem}
+.pro input{margin-top:6px}
+.pro.on{display:none}
+@media print{
+  body{background:#fff}header,footer,.panel,.actions,.no-print,.ad{display:none!important}
+  main{max-width:none;padding:0}.app{display:block}#inv{box-shadow:none;padding:0;position:static;min-height:0}
+  @page{margin:16mm}
+}
+</style></head><body>
+<header><a class="logo" href="../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../freelance-calc/">Calculators</a><a href="../freelance-tools/">Tools</a></nav></header>
+<main>
+<div class="no-print"><h1>Free invoice generator</h1>
+<p class="lead">Fill in the form, check the preview, and download a PDF. Nothing is uploaded: your details stay in your browser.</p></div>
+<div class="app">
+<div class="panel">
+  <h3>Your business</h3>
+  <div><textarea id="from" placeholder="Your name or business&#10;Address&#10;Email · VAT/Tax ID">Alex Morgan Design
+12 High Street, London
+alex@example.com</textarea></div>
+  <div class="g2"><div><label for="logo">Logo <small>(optional)</small></label><input id="logo" type="file" accept="image/*"></div>
+  <div><label for="brand">Brand colour</label><input id="brand" type="color" value="#0b6e4f" style="height:42px;padding:4px"></div></div>
+  <h3>Bill to</h3>
+  <div><textarea id="to" placeholder="Client name&#10;Address">Acme Ltd
+1 Market Square, Manchester</textarea></div>
+  <h3>Invoice details</h3>
+  <div class="g2">
+    <div><label for="num">Invoice number</label><input id="num" value="INV-001"></div>
+    <div><label for="cur">Currency</label><select id="cur"><option>USD</option><option>EUR</option><option>GBP</option><option>PLN</option><option>CAD</option><option>AUD</option><option>INR</option></select></div>
+    <div><label for="date">Invoice date</label><input id="date" type="date"></div>
+    <div><label for="due">Due date</label><input id="due" type="date"></div>
+  </div>
+  <h3>Items</h3>
+  <div class="item small" style="font-size:.8rem;color:var(--muted)"><span>Description</span><span>Qty</span><span>Price</span><span></span></div>
+  <div id="items"></div>
+  <button class="btn ghost" id="add" type="button">+ Add item</button>
+  <div class="g2" style="margin-top:12px">
+    <div><label for="tax">Tax / VAT %</label><input id="tax" type="number" value="0" step="any"></div>
+    <div><label for="disc">Discount</label><input id="disc" type="number" value="0" step="any"></div>
+  </div>
+  <h3>Notes &amp; payment details</h3>
+  <div><textarea id="notes">Payment within 14 days by bank transfer.
+Bank: Example Bank · IBAN: GB00 0000 0000 0000 00
+Thank you for your business!</textarea></div>
+  <div class="pro" id="proBox"><strong>RateKit Pro: $5 one-off</strong><br>Remove the "Made with RateKit" line, save unlimited clients, and auto-number invoices.
+    <div class="actions" style="margin:8px 0 0"><a class="btn" id="buyPro" href="#" target="_blank" rel="noopener">Get Pro</a></div>
+    <label for="key" style="margin-top:10px">Already bought? Paste your licence key</label><input id="key" placeholder="XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX"><div id="keyMsg" class="small"></div></div>
+  <div id="proTools" style="display:none;margin-top:14px">
+    <h3>Pro: saved clients</h3>
+    <div class="g2"><select id="clients"><option value="">Load a saved client…</option></select><button class="btn ghost" id="saveClient" type="button">Save this client</button></div>
+  </div>
+</div>
+<div>
+  <div class="actions no-print"><button class="btn" id="pdf" type="button">Download PDF</button><button class="btn ghost" id="reset" type="button">Start a new invoice</button></div>
+  <div id="inv"></div>
+  <p class="small no-print">Tip: in the print window choose "Save as PDF" as the destination.</p>
+</div></div>
+<div class="no-print">
+<div class="ad"><!-- ad slot --></div>
+<h2>How to make an invoice</h2>
+<p>A professional invoice needs your business details, the client's details, a unique invoice number, the invoice and due dates, a list of what you did with prices, any tax, the total and how to pay you. Fill in each section above and the preview updates as you type.</p>
+<h2>Frequently asked questions</h2>
+<details><summary>Is this invoice generator really free?</summary><p>Yes. You can create and download as many invoices as you like. Pro is an optional $5 upgrade that removes the small RateKit line and adds saved clients.</p></details>
+<details><summary>Is my data stored anywhere?</summary><p>No. Everything runs in your browser. Your business details are remembered on this device only, so you don't have to retype them.</p></details>
+<details><summary>How do I save the invoice as a PDF?</summary><p>Click Download PDF and choose "Save as PDF" in the print window. This works in every modern browser, on desktop and mobile.</p></details>
+<h2>More tools</h2>
+<div class="cards"><a href="../freelance-calc/hourly-rate-calculator.html"><strong>Hourly rate calculator</strong><span>Work out what to charge.</span></a>
+<a href="../freelance-calc/late-payment-calculator.html"><strong>Late payment interest</strong><span>Charge interest on overdue invoices.</span></a>
+<a href="../freelance-calc/tax-set-aside-calculator.html"><strong>Tax set-aside</strong><span>How much of each invoice to save.</span></a></div>
+</div>
+</main>
+<footer class="no-print">RateKit offers free tools for freelancers. · <a href="../freelance-calc/privacy.html">Privacy</a></footer>
+<script src="app.js"></script>
+</body></html>
