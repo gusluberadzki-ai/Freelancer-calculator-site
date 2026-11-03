@@ -239,9 +239,11 @@ show(n.toLocaleString(),'characters',L.map(([k,m])=>[k,n<=m?(m-n)+' left ✓':(n
  "<h2>Why limits matter</h2><p>Search engines cut off titles after about 60 characters and descriptions after about 160, and social platforms truncate or reject posts that are too long. Check before you publish.</p>",
  [("Do emoji count as one character?", "This counter counts each emoji as one character, which matches what most platforms show you.")], "Text")
 
+exec((OUT / "more_tools.py").read_text())
+
 CSS = """.grid textarea{width:100%;min-height:130px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
 .btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
-.grid>*{min-width:0}"""
+.grid>*{min-width:0}#rows td{overflow-wrap:anywhere}"""
 def head(t, d, p):
     return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(t)} | RateKit</title><meta name="description" content="{html.escape(d)}"><link rel="canonical" href="{BASE}{p}">

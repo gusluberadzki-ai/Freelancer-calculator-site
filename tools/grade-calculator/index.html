@@ -1,0 +1,20 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Final Grade Calculator: What Do I Need on the Final? | RateKit</title><meta name="description" content="Free final grade calculator. Find the score you need on your final exam to reach the course grade you want."><link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/tools/grade-calculator/">
+<link rel="stylesheet" href="../../freelance-calc/style.css"><style>.grid textarea{width:100%;min-height:130px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.grid>*{min-width:0}#rows td{overflow-wrap:anywhere}</style>
+<!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
+<header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a></nav></header><main>
+<h1>Grade calculator</h1><p class="lead">Find out what you need on the final exam to get the grade you want.</p>
+<section class="calc"><div class="grid"><div><label for="c">Current grade <small>(%)</small></label><input id="c" type="number" step="any" value="82"></div><div><label for="w">Final exam weight <small>(% of the course)</small></label><input id="w" type="number" step="any" value="30"></div><div><label for="g">Grade you want <small>(%)</small></label><input id="g" type="number" step="any" value="85"></div></div><div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div><h2>The formula</h2><p>Needed = (wanted − current × (1 − weight)) ÷ weight. With 82% now, a final worth 30% and a target of 85%, you need 92%.</p><h2>Frequently asked questions</h2><details><summary>What if my current grade already includes some weight?</summary><p>Enter your current grade as the average over everything except the final, and the final&#x27;s share of the whole course.</p></details>
+<h2>Related tools</h2><div class="cards"><a href="../gpa-calculator/"><strong>GPA calculator</strong><span>Enter each course as grade and credits, one per line, to get your GPA on the 4.0</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What if my current grade already includes some weight?", "acceptedAnswer": {"@type": "Answer", "text": "Enter your current grade as the average over everything except the final, and the final's share of the whole course."}}]}</script>
+<script>const $=id=>document.getElementById(id);const v=id=>parseFloat($(id).value)||0;
+const money=n=>isFinite(n)?n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'–';
+const nf=(n,d=2)=>isFinite(n)?(+n.toFixed(d)).toLocaleString(undefined,{maximumFractionDigits:d}):'–';
+function show(big,lbl,rows){$('big').textContent=big;$('lbl').textContent=lbl||'';$('rows').innerHTML=(rows||[]).map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('')}
+function copy(id,btn){navigator.clipboard&&navigator.clipboard.writeText($(id).value||$(id).textContent);if(btn){btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1200)}}
+function run(){const w=v('w')/100;const need=w?(v('g')-v('c')*(1-w))/w:NaN;
+show(nf(need,1)+'%','needed on the final',[['If you score 100%',nf(v('c')*(1-w)+100*w,1)+'%'],['If you score 0%',nf(v('c')*(1-w),1)+'%'],['Verdict',need>100?'Not reachable with this final alone':need<=0?'Already secured':'Reachable']]);}
+document.addEventListener('input',run);document.addEventListener('change',run);run();</script></main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>

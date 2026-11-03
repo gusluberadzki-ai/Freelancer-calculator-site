@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GPA Calculator: Work Out Your Grade Point Average | RateKit</title><meta name="description" content="Free GPA calculator on the 4.0 scale. Enter your grades and credit hours to get your semester GPA instantly."><link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/tools/gpa-calculator/">
+<link rel="stylesheet" href="../../freelance-calc/style.css"><style>.grid textarea{width:100%;min-height:130px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.grid>*{min-width:0}#rows td{overflow-wrap:anywhere}</style>
+<!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
+<header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a></nav></header><main>
+<h1>GPA calculator</h1><p class="lead">Enter each course as grade and credits, one per line, to get your GPA on the 4.0 scale.</p>
+<section class="calc"><div class="grid"><div style="grid-column:1/-1"><label for="t">Courses (grade credits, one per line)</label><textarea id="t">A 3
+B+ 4
+A- 3
+B 3
+C+ 2</textarea></div></div><div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div><h2>How GPA is calculated</h2><p>Each letter grade has a point value (A = 4.0, B = 3.0 and so on). Multiply each course's points by its credit hours, add them up, and divide by the total credits.</p><h2>Frequently asked questions</h2><details><summary>Does my school use the same scale?</summary><p>Most US schools use this 4.0 scale, but some give A+ 4.3 or use different plus/minus values. Check your school&#x27;s handbook.</p></details>
+<h2>Related tools</h2><div class="cards"><a href="../grade-calculator/"><strong>Grade calculator</strong><span>Find out what you need on the final exam to get the grade you want.</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does my school use the same scale?", "acceptedAnswer": {"@type": "Answer", "text": "Most US schools use this 4.0 scale, but some give A+ 4.3 or use different plus/minus values. Check your school's handbook."}}]}</script>
+<script>const $=id=>document.getElementById(id);const v=id=>parseFloat($(id).value)||0;
+const money=n=>isFinite(n)?n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'–';
+const nf=(n,d=2)=>isFinite(n)?(+n.toFixed(d)).toLocaleString(undefined,{maximumFractionDigits:d}):'–';
+function show(big,lbl,rows){$('big').textContent=big;$('lbl').textContent=lbl||'';$('rows').innerHTML=(rows||[]).map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('')}
+function copy(id,btn){navigator.clipboard&&navigator.clipboard.writeText($(id).value||$(id).textContent);if(btn){btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1200)}}
+function run(){const S={'A+':4,'A':4,'A-':3.7,'B+':3.3,'B':3,'B-':2.7,'C+':2.3,'C':2,'C-':1.7,'D+':1.3,'D':1,'D-':.7,'F':0};let pts=0,cr=0,bad=0;
+$('t').value.split('\n').forEach(l=>{const m=l.trim().toUpperCase().match(/^([A-DF][+-]?)\s+([\d.]+)/);if(!m){if(l.trim())bad++;return}if(!(m[1] in S)){bad++;return}pts+=S[m[1]]*+m[2];cr+=+m[2]});
+show(cr?nf(pts/cr,2):'–','GPA on the 4.0 scale',[['Total credits',nf(cr,1)],['Quality points',nf(pts,1)]].concat(bad?[['Lines not understood',bad]]:[]));}
+document.addEventListener('input',run);document.addEventListener('change',run);run();</script></main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>
