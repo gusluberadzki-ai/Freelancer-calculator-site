@@ -17,3 +17,33 @@ Files: budget-planner-book-interior.pdf, budget-planner-book-cover.pdf (12.381 x
 **Keywords:** budget planner · monthly budget book · expense tracker · bill organizer · finance journal · debt tracker · savings planner
 **Categories:** Business & Money > Personal Finance > Budgeting & Money Management; Self-Help
 **Price:** $6.99 (print cost about $2.30, royalty about $1.90)
+
+---
+## Round 6 books (6 x 9 in, white paper, black & white interior, matte cover)
+Upload each `<slug>-interior.pdf` as the manuscript and `<slug>-cover.pdf` as the cover. Low-content book: say "No" to ISBN being needed (use a free KDP ISBN) and tick "low-content".
+Suggested price: $6.99 (royalty about $1.90 per sale at 60% minus ~$2.30 print cost).
+
+### Mileage Log Book (mileage-log-book, 112 pages)
+Subtitle: Vehicle Mileage Record Book for Business, Tax and Expenses
+Keywords: mileage log book, mileage tracker for taxes, vehicle log book, car mileage journal, business mileage record, small business tax log, odometer log
+Categories: Business & Money > Taxation; Transportation > Automotive
+
+### Blood Pressure Log Book (blood-pressure-log-book, 112 pages)
+Subtitle: Daily Blood Pressure and Heart Rate Tracker, Large Print Health Journal
+Keywords: blood pressure log book, blood pressure monitor journal, heart rate tracker, hypertension log, health journal for seniors, daily bp record
+Categories: Health, Fitness & Dieting > Diseases & Physical Ailments > Heart Disease; Self-Help > Journal Writing
+
+### My Recipe Book (recipe-book, 108 pages)
+Subtitle: Blank Cookbook to Write In 50 Family Recipes, with Contents and Conversion Chart
+Keywords: blank recipe book to write in, family recipe journal, personal cookbook, recipe organizer, gift for cooks, recipe notebook
+Categories: Cookbooks > Reference; Crafts & Hobbies > Journal Writing
+
+### Gratitude Journal (gratitude-journal-book, 124 pages)
+Subtitle: 120 Days of Guided Morning and Evening Prompts, 5 Minutes a Day
+Keywords: gratitude journal, five minute journal, daily gratitude diary, mindfulness journal for women, self care journal, positivity journal
+Categories: Self-Help > Journal Writing; Self-Help > Happiness
+
+### Workout Log Book (workout-log-book, 126 pages)
+Subtitle: Gym and Fitness Journal with 120 Workouts for Strength Training and Cardio
+Keywords: workout log book, gym journal, fitness tracker notebook, weight lifting log, strength training journal, exercise diary
+Categories: Health, Fitness & Dieting > Exercise & Fitness; Sports > Training
