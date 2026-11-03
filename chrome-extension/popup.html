@@ -1,0 +1,47 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>TickBill</title>
+<style>
+:root{--bg:#fff;--ink:#1d1d1f;--muted:#666;--line:#e5e5e2;--acc:#0b6e4f;--soft:#e3f2ec;--red:#c0392b}
+@media (prefers-color-scheme:dark){:root{--bg:#1b1b1b;--ink:#eee;--muted:#9a9a9a;--line:#333;--acc:#4cc29a;--soft:#1d3229}}
+*{box-sizing:border-box}body{margin:0;width:340px;background:var(--bg);color:var(--ink);font:14px/1.4 system-ui,sans-serif}
+.wrap{padding:14px}
+h1{font-size:15px;margin:0 0 10px;display:flex;justify-content:space-between;align-items:center}
+h1 span{color:var(--acc)}
+.timer{background:var(--soft);border-radius:10px;padding:12px;text-align:center}
+.clock{font-size:34px;font-weight:700;font-variant-numeric:tabular-nums}
+.earn{color:var(--acc);font-weight:600}
+select,input{width:100%;padding:8px;border:1px solid var(--line);border-radius:7px;background:var(--bg);color:var(--ink);font-size:14px;margin-top:8px}
+button{cursor:pointer;border:0;border-radius:7px;padding:9px 12px;font-size:14px;font-weight:600}
+.go{width:100%;margin-top:10px;background:var(--acc);color:#fff}
+.go.stop{background:var(--red)}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.sec{margin-top:14px;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);display:flex;justify-content:space-between}
+.sec a{text-transform:none;color:var(--acc);cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:6px;font-size:13px}td{padding:5px 0;border-bottom:1px solid var(--line)}td:not(:first-child){text-align:right}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.small{font-size:12px;color:var(--muted)}
+#addForm{display:none}
+</style></head>
+<body><div class="wrap">
+<h1><div>Tick<span>Bill</span></div><span class="small" id="weekTotal"></span></h1>
+<div class="timer">
+  <div class="clock" id="clock">0:00:00</div>
+  <div class="earn" id="liveEarn">&nbsp;</div>
+  <select id="client"></select>
+  <input id="note" placeholder="What are you working on? (optional)">
+  <button class="go" id="toggle">Start</button>
+</div>
+
+<div class="sec"><span>Clients</span><a id="showAdd">+ Add client</a></div>
+<div id="addForm"><div class="row"><input id="newName" placeholder="Client name"><input id="newRate" type="number" placeholder="Rate / hour"></div>
+<button class="go" id="addBtn">Save client</button></div>
+
+<div class="sec"><span>This week</span><span id="weekEarn"></span></div>
+<table id="summary"></table>
+
+<div class="sec"><span>Recent entries</span><a id="export">Export CSV</a></div>
+<table id="recent"></table>
+<p class="small" style="margin-top:12px"><select id="currency" style="width:auto;margin:0 6px 0 0;padding:3px"><option>USD</option><option>EUR</option><option>GBP</option><option>PLN</option><option>CAD</option><option>AUD</option><option>INR</option></select>Data stays in your browser. <a id="clearAll" style="color:var(--red);cursor:pointer;float:right">Reset</a></p>
+</div>
+<script src="popup.js"></script>
+</body></html>
