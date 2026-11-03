@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Color Converter: HEX to RGB to HSL | RateKit</title><meta name="description" content="Free colour converter and picker. Convert between HEX, RGB and HSL, and see tints, shades and a contrast check."><link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/tools/color-converter/">
+<link rel="stylesheet" href="../../freelance-calc/style.css"><style>.grid textarea{width:100%;min-height:130px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.grid>*{min-width:0}</style>
+<!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
+<header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a></nav></header><main>
+<h1>Color converter</h1><p class="lead">Pick a colour or paste a code to convert between HEX, RGB and HSL.</p>
+<section class="calc"><div class="grid"><div><label for="c">Pick a colour</label><input id="c" type="color" value="#0b6e4f" style="height:46px;padding:4px"></div><div><label for="h">Or paste HEX / rgb()</label><input id="h" value="#0b6e4f"></div><div style="grid-column:1/-1;display:flex;gap:4px" id="sw"></div></div><div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div><h2>HEX, RGB and HSL</h2><p>HEX and RGB describe the same thing: amounts of red, green and blue from 0 to 255. HSL describes hue (0–360°), saturation and lightness, which is easier for making lighter or darker versions of a colour.</p><h2>Frequently asked questions</h2><details><summary>What contrast ratio do I need?</summary><p>WCAG AA asks for at least 4.5:1 for normal text and 3:1 for large text.</p></details>
+<h2>Related tools</h2><div class="cards"><a href="../json-formatter/"><strong>JSON formatter</strong><span>Format, validate or minify JSON. Your data never leaves your browser.</span></a><a href="../base64-encoder/"><strong>Base64 encoder</strong><span>Encode text to Base64 or decode Base64 back to text.</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What contrast ratio do I need?", "acceptedAnswer": {"@type": "Answer", "text": "WCAG AA asks for at least 4.5:1 for normal text and 3:1 for large text."}}]}</script>
+<script>const $=id=>document.getElementById(id);const v=id=>parseFloat($(id).value)||0;
+const money=n=>isFinite(n)?n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'–';
+const nf=(n,d=2)=>isFinite(n)?(+n.toFixed(d)).toLocaleString(undefined,{maximumFractionDigits:d}):'–';
+function show(big,lbl,rows){$('big').textContent=big;$('lbl').textContent=lbl||'';$('rows').innerHTML=(rows||[]).map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('')}
+function copy(id,btn){navigator.clipboard&&navigator.clipboard.writeText($(id).value||$(id).textContent);if(btn){btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1200)}}
+function run(){const src=event&&event.target?event.target.id:'c';let hex=$('c').value;
+if(src==='h'){const s=$('h').value.trim();let m=s.match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i),n=s.match(/rgba?\(\s*(\d+)[,\s]+(\d+)[,\s]+(\d+)/i);
+if(m){let x=m[1];if(x.length===3)x=x.split('').map(c=>c+c).join('');hex='#'+x.toLowerCase()}else if(n)hex='#'+[n[1],n[2],n[3]].map(q=>Math.min(255,+q).toString(16).padStart(2,'0')).join('');else return;$('c').value=hex}else $('h').value=hex;
+const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);const R=r/255,G=g/255,B=b/255,mx=Math.max(R,G,B),mn=Math.min(R,G,B),l=(mx+mn)/2,d=mx-mn;
+let h=0,s=0;if(d){s=d/(1-Math.abs(2*l-1));h=mx===R?((G-B)/d)%6:mx===G?(B-R)/d+2:(R-G)/d+4;h=Math.round(h*60);if(h<0)h+=360}
+const lum=x=>{x/=255;return x<=.03928?x/12.92:Math.pow((x+.055)/1.055,2.4)},L=.2126*lum(r)+.7152*lum(g)+.0722*lum(b),cw=1.05/(L+.05),cb=(L+.05)/.05;
+show(hex.toUpperCase(),'',[['RGB',`rgb(${r}, ${g}, ${b})`],['HSL',`hsl(${h}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`],['Contrast with white',nf(cw,2)+':1'+(cw>=4.5?' ✓ AA':'')],['Contrast with black',nf(cb,2)+':1'+(cb>=4.5?' ✓ AA':'')]]);
+$('sw').innerHTML=[.8,.6,.4,.2,0,-.2,-.4,-.6].map(t=>{const f=c=>Math.round(t>0?c+(255-c)*t:c*(1+t));const x='#'+[r,g,b].map(c=>f(c).toString(16).padStart(2,'0')).join('');return`<div title="${x}" style="flex:1;height:36px;border-radius:6px;background:${x}"></div>`}).join('');}
+document.addEventListener('input',run);document.addEventListener('change',run);run();</script></main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>

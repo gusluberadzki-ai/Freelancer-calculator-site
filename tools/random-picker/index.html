@@ -1,0 +1,26 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Random Name Picker and Number Generator | RateKit</title><meta name="description" content="Free random name picker and random number generator. Pick winners from a list or generate random numbers in a range."><link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/tools/random-picker/">
+<link rel="stylesheet" href="../../freelance-calc/style.css"><style>.grid textarea{width:100%;min-height:130px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.grid>*{min-width:0}</style>
+<!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
+<header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a></nav></header><main>
+<h1>Random name picker</h1><p class="lead">Pick a random winner from a list, or generate random numbers.</p>
+<section class="calc"><div class="grid"><div style="grid-column:1/-1"><label for="t">Names or items (one per line)</label><textarea id="t">Alice
+Ben
+Chloe
+Daniel
+Emma</textarea></div><div><label for="k">How many to pick</label><input id="k" type="number" step="1" value="1"></div><div><label for="a">Or random number from</label><input id="a" type="number" step="1" value="1"></div><div><label for="b">to</label><input id="b" type="number" step="1" value="100"></div><div style="display:flex;gap:8px;align-items:end"><button class="btn" type="button" id="pick">Pick from list</button><button class="btn ghost" type="button" id="numb">Random number</button></div></div><div class="result" aria-live="polite"><div class="big" id="big">–</div><div id="lbl"></div><table id="rows"></table></div></section>
+<div class="ad"><!-- ad slot --></div><h2>Fair and random</h2><p>Picks use your browser's cryptographic random number generator, so every entry has an equal chance. When you pick several winners, nobody can be picked twice.</p><h2>Frequently asked questions</h2><details><summary>Can I use it for giveaways?</summary><p>Yes. Paste the entrants&#x27; names, one per line, and pick. Take a screenshot of the result for transparency.</p></details>
+<h2>Related tools</h2><div class="cards"><a href="../case-converter/"><strong>Case converter</strong><span>Paste text and convert its letter case in one click.</span></a><a href="../lorem-ipsum-generator/"><strong>Lorem ipsum generator</strong><span>Generate placeholder text for designs, websites and mock-ups.</span></a><a href="../password-generator/"><strong>Password generator</strong><span>Create strong random passwords. They&#x27;re generated on your device using secure ra</span></a><a href="../character-counter/"><strong>Character counter</strong><span>Count characters and check your text against common platform limits.</span></a></div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I use it for giveaways?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Paste the entrants' names, one per line, and pick. Take a screenshot of the result for transparency."}}]}</script>
+<script>const $=id=>document.getElementById(id);const v=id=>parseFloat($(id).value)||0;
+const money=n=>isFinite(n)?n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2}):'–';
+const nf=(n,d=2)=>isFinite(n)?(+n.toFixed(d)).toLocaleString(undefined,{maximumFractionDigits:d}):'–';
+function show(big,lbl,rows){$('big').textContent=big;$('lbl').textContent=lbl||'';$('rows').innerHTML=(rows||[]).map(r=>'<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>').join('')}
+function copy(id,btn){navigator.clipboard&&navigator.clipboard.writeText($(id).value||$(id).textContent);if(btn){btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy',1200)}}
+function run(){const R=n=>{const a=new Uint32Array(1);crypto.getRandomValues(a);return a[0]%n};
+if(!window._p){window._p=1;$('pick').onclick=()=>{const L=$('t').value.split('\n').map(x=>x.trim()).filter(Boolean),k=Math.min(L.length,Math.max(1,Math.round(v('k'))));const c=[...L],w=[];for(let i=0;i<k;i++)w.push(c.splice(R(c.length),1)[0]);show(w.join(', ')||'–',k>1?'winners':'winner',[['Picked from',L.length+' entries']])};
+$('numb').onclick=()=>{const a=Math.round(Math.min(v('a'),v('b'))),b=Math.round(Math.max(v('a'),v('b')));show(String(a+R(b-a+1)),'random number between '+a+' and '+b,[])}}
+if($('big').textContent==='–')show('Ready','press a button',[]);}
+document.addEventListener('input',run);document.addEventListener('change',run);run();</script></main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>
