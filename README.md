@@ -12,6 +12,10 @@ Everything here is a static site deployed free to GitHub Pages by `.github/workf
 | `background-remover/` | In-browser AI background remover (ads) | /background-remover/ |
 | `app/` | TickBill installable phone app (PWA) | /app/ |
 | `kdp-planner/` | Amazon KDP planner book generator | not deployed |
+| `pdf-tools/` | Merge/split/remove/rotate PDF (vendored pdf-lib, MIT) | /pdf-tools/ |
+| `percentage-calculator/`, `date-calculator/`, `word-counter/` | Evergreen ad-supported tools | /<folder>/ |
+| `salary/` | 302 programmatic salary pages (`python3 build.py`) | /salary/ |
+| `qr-code-generator/`, `image-compressor/` | Free tools (ads) | /<folder>/ |
 | `portfolio-template/` | Portfolio website template sold on Gumroad | /portfolio-template/template/ (demo) |
 
 Rebuild a generated site with `python3 build.py` inside its folder.
