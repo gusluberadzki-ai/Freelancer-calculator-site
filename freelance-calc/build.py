@@ -155,7 +155,7 @@ def head(title, desc, path):
 <nav><a href="./">All calculators</a></nav></header><main>"""
 
 FOOT = f"""</main><footer>{SITE} offers free calculators for freelancers and contractors. Results are estimates, not financial or tax advice.
-· <a href="privacy.html">Privacy</a></footer></body></html>"""
+· <a href="privacy.html">Privacy</a> · <a href="../freelance-tools/">Tools for freelancers</a> · <a href="../chrome-extension/">TickBill time tracker</a></footer></body></html>"""
 
 def page(c):
     fields = "".join(

@@ -1,0 +1,45 @@
+{
+"Invoicing & accounting":[
+ ["FreshBooks","https://www.freshbooks.com","Invoicing, expenses and time tracking built for small service businesses."],
+ ["Wave","https://www.waveapps.com","Invoicing and accounting popular with solo freelancers on a budget."],
+ ["Xero","https://www.xero.com","Full accounting software with bank feeds, invoicing and a big accountant network."],
+ ["QuickBooks","https://quickbooks.intuit.com","Widely used accounting and invoicing, with a self-employed edition."],
+ ["Zoho Invoice","https://www.zoho.com/invoice/","Invoicing, quotes and payment reminders from the Zoho suite."],
+ ["Invoice Ninja","https://invoiceninja.com","Open-source invoicing, quotes and client portal; can be self-hosted."]],
+"Time tracking":[
+ ["Toggl Track","https://toggl.com/track/","Simple one-click time tracking with reports per client and project."],
+ ["Clockify","https://clockify.me","Time tracker and timesheet app with a generous free tier."],
+ ["Harvest","https://www.getharvest.com","Time tracking that turns hours straight into invoices."],
+ ["TickBill","https://gusluberadzki-ai.github.io/income-sites/chrome-extension/","Chrome extension: one-click timer that shows what you've earned per client."]],
+"Proposals & contracts":[
+ ["Bonsai","https://www.hellobonsai.com","Proposals, contracts, invoices and time tracking in one freelancer suite."],
+ ["PandaDoc","https://www.pandadoc.com","Proposal and contract builder with e-signatures."],
+ ["Docusign","https://www.docusign.com","The best-known e-signature tool for getting contracts signed."],
+ ["Dropbox Sign","https://sign.dropbox.com","Straightforward e-signatures, formerly HelloSign."]],
+"Finding clients":[
+ ["Upwork","https://www.upwork.com","The largest general freelance marketplace."],
+ ["Fiverr","https://www.fiverr.com","Marketplace where you sell fixed-price service packages."],
+ ["Toptal","https://www.toptal.com","Screened network for senior developers, designers and finance experts."],
+ ["Contra","https://contra.com","Commission-free freelance profiles and job listings."],
+ ["We Work Remotely","https://weworkremotely.com","Large remote job board with contract roles."]],
+"Getting paid":[
+ ["Stripe","https://stripe.com","Card payments, payment links and invoicing for online businesses."],
+ ["PayPal","https://www.paypal.com","Widely accepted way for clients to pay invoices."],
+ ["Wise","https://wise.com","Multi-currency accounts and cheap international transfers."],
+ ["Payoneer","https://www.payoneer.com","Receive payments from marketplaces and international clients."]],
+"Client communication & scheduling":[
+ ["Calendly","https://calendly.com","Booking links so clients can schedule calls without back-and-forth."],
+ ["Cal.com","https://cal.com","Open-source scheduling alternative to Calendly."],
+ ["Loom","https://www.loom.com","Quick screen recordings for async client updates."],
+ ["Zoom","https://zoom.us","Video calls for client meetings."]],
+"Project management":[
+ ["Notion","https://www.notion.so","Docs, wikis and project boards in one flexible workspace."],
+ ["Trello","https://trello.com","Simple kanban boards for tracking client work."],
+ ["Asana","https://asana.com","Task and project management for teams and solo operators."],
+ ["ClickUp","https://clickup.com","All-in-one tasks, docs and goals with lots of views."]],
+"Design & portfolio":[
+ ["Canva","https://www.canva.com","Easy design for social posts, proposals and pitch decks."],
+ ["Figma","https://www.figma.com","Collaborative interface design tool."],
+ ["Behance","https://www.behance.net","Portfolio platform for creatives, owned by Adobe."],
+ ["Framer","https://www.framer.com","Build and publish a portfolio website visually."]]
+}
