@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free QR Code Generator: No Sign-up, Never Expires | RateKit</title>
+<meta name="description" content="Make a free QR code for a link, text, Wi-Fi network, email or SMS. Custom colours, download as PNG or SVG. Static codes that never expire.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/qr-code-generator/">
+<link rel="stylesheet" href="../freelance-calc/style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once approved -->
+<style>
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:20px;padding:7px 14px;cursor:pointer;font-size:.92rem}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.app{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:720px){.app{grid-template-columns:minmax(0,1fr)}}
+.app>*{min-width:0}
+.f{margin-bottom:10px}
+textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;min-height:80px}
+.preview{background:#fff;border-radius:12px;padding:18px;text-align:center;border:1px solid var(--line)}
+.preview svg{width:100%;max-width:300px;height:auto}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:11px 18px;font-weight:600;font-size:1rem;background:var(--accent);color:#fff}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.g3>*{min-width:0}
+[data-pane]{display:none}[data-pane].on{display:block}
+</style></head><body>
+<header><a class="logo" href="../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../invoice-generator/">Invoices</a><a href="../freelance-calc/">Calculators</a></nav></header>
+<main>
+<h1>Free QR code generator</h1>
+<p class="lead">Make a QR code for a link, text, Wi-Fi, email or SMS. No sign-up, no tracking, and the code never expires.</p>
+<section class="calc"><div class="app"><div>
+  <div class="tabs" id="tabs"><button data-t="url" class="on">Link</button><button data-t="text">Text</button><button data-t="wifi">Wi-Fi</button><button data-t="email">Email</button><button data-t="sms">SMS</button></div>
+  <div data-pane="url" class="on"><div class="f"><label for="url">Website address</label><input id="url" value="https://example.com" inputmode="url"></div></div>
+  <div data-pane="text"><div class="f"><label for="text">Text</label><textarea id="text">Hello!</textarea></div></div>
+  <div data-pane="wifi"><div class="f"><label for="ssid">Network name (SSID)</label><input id="ssid" value="MyWiFi"></div>
+    <div class="f"><label for="pass">Password</label><input id="pass" value=""></div>
+    <div class="f"><label for="enc">Security</label><select id="enc"><option value="WPA">WPA/WPA2/WPA3</option><option value="WEP">WEP</option><option value="nopass">None</option></select></div></div>
+  <div data-pane="email"><div class="f"><label for="em">Email address</label><input id="em" value="hello@example.com"></div>
+    <div class="f"><label for="sub">Subject</label><input id="sub"></div><div class="f"><label for="bod">Message</label><textarea id="bod"></textarea></div></div>
+  <div data-pane="sms"><div class="f"><label for="ph">Phone number</label><input id="ph" value="+1 555 0100" inputmode="tel"></div>
+    <div class="f"><label for="msg">Message</label><textarea id="msg"></textarea></div></div>
+  <div class="g3"><div><label for="fg">Colour</label><input id="fg" type="color" value="#111111" style="height:42px;padding:4px"></div>
+    <div><label for="bg">Background</label><input id="bg" type="color" value="#ffffff" style="height:42px;padding:4px"></div>
+    <div><label for="ec">Error correction</label><select id="ec"><option value="L">Low</option><option value="M" selected>Medium</option><option value="Q">High</option><option value="H">Max</option></select></div></div>
+</div><div>
+  <div class="preview" id="preview"></div>
+  <div class="actions"><button class="btn" id="png" type="button">Download PNG</button><button class="btn ghost" id="svg" type="button">Download SVG</button></div>
+  <p class="small" id="info"></p>
+</div></div></section>
+<div class="ad"><!-- ad slot --></div>
+<h2>Static QR codes that never expire</h2>
+<p>Many "free" QR code sites create a dynamic code that redirects through their server, then switch it off unless you pay. This generator makes a <strong>static</strong> code: the link or text is stored in the pattern itself, so it keeps working forever with no subscription.</p>
+<h2>Tips for a QR code that scans</h2>
+<ul><li>Keep strong contrast: a dark code on a light background works best.</li><li>Print it at least 2 cm (about 0.8 in) wide.</li><li>Use higher error correction if you'll print it on something that might get scratched.</li><li>Always test it with your phone camera before printing.</li></ul>
+<h2>Frequently asked questions</h2>
+<details><summary>Is this QR code generator free?</summary><p>Yes, completely. Codes are free for personal and commercial use.</p></details>
+<details><summary>Will my QR code stop working?</summary><p>No. The content is encoded directly in the code, so it doesn't depend on this website.</p></details>
+<details><summary>How do I share my Wi-Fi with a QR code?</summary><p>Choose Wi-Fi, enter your network name and password, then print the code. Guests scan it with their phone camera to join.</p></details>
+<h2>More free tools</h2>
+<div class="cards"><a href="../image-compressor/"><strong>Image compressor</strong><span>Shrink and resize photos.</span></a><a href="../background-remover/"><strong>Background remover</strong><span>Transparent PNGs with AI.</span></a><a href="../invoice-generator/"><strong>Invoice generator</strong><span>PDF invoices in seconds.</span></a></div>
+</main>
+<footer>RateKit offers free tools for freelancers and small businesses. · <a href="../freelance-calc/privacy.html">Privacy</a></footer>
+<script src="vendor/qrcode.js"></script><script src="vendor/qrcode_UTF8.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+let type = 'url', svgText = '', cells = null;
+const wesc = s => s.replace(/([\\;,:"])/g, '\\$1');
+function payload() {
+  switch (type) {
+    case 'url': return $('url').value.trim();
+    case 'text': return $('text').value;
+    case 'wifi': return `WIFI:T:${$('enc').value};S:${wesc($('ssid').value)};${$('enc').value === 'nopass' ? '' : 'P:' + wesc($('pass').value) + ';'};`;
+    case 'email': { const q = new URLSearchParams(); if ($('sub').value) q.set('subject', $('sub').value); if ($('bod').value) q.set('body', $('bod').value);
+      const s = q.toString().replace(/\+/g, '%20'); return `mailto:${$('em').value.trim()}${s ? '?' + s : ''}`; }
+    case 'sms': return `SMSTO:${$('ph').value.replace(/[^\d+]/g, '')}:${$('msg').value}`;
+  }
+}
+function render() {
+  const data = payload() || ' ';
+  let qr;
+  try { qr = qrcode(0, $('ec').value); qr.addData(data); qr.make(); }
+  catch (e) { $('preview').innerHTML = '<p style="color:#c0392b">Too much text for one QR code. Try shortening it.</p>'; cells = null; return; }
+  const n = qr.getModuleCount(), q = 4, size = n + q * 2, fg = $('fg').value, bg = $('bg').value;
+  let path = '';
+  for (let r = 0; r < n; r++) for (let c = 0; c < n; c++) if (qr.isDark(r, c)) path += `M${c + q} ${r + q}h1v1h-1z`;
+  svgText = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="${bg}"/><path d="${path}" fill="${fg}"/></svg>`;
+  $('preview').innerHTML = svgText; $('preview').style.background = bg;
+  cells = { qr, n, q, size, fg, bg };
+  $('info').textContent = `${data.length} characters · ${n}×${n} modules`;
+}
+function download(name, blob) { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000); }
+$('png').onclick = () => {
+  if (!cells) return; const { qr, n, q, size, fg, bg } = cells, scale = Math.max(8, Math.ceil(1024 / size));
+  const c = document.createElement('canvas'); c.width = c.height = size * scale; const x = c.getContext('2d');
+  x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height); x.fillStyle = fg;
+  for (let r = 0; r < n; r++) for (let k = 0; k < n; k++) if (qr.isDark(r, k)) x.fillRect((k + q) * scale, (r + q) * scale, scale, scale);
+  c.toBlob(b => download('qr-code.png', b), 'image/png');
+};
+$('svg').onclick = () => svgText && download('qr-code.svg', new Blob([svgText], { type: 'image/svg+xml' }));
+$('tabs').onclick = e => {
+  const t = e.target.dataset.t; if (!t) return; type = t;
+  document.querySelectorAll('#tabs button').forEach(b => b.classList.toggle('on', b.dataset.t === t));
+  document.querySelectorAll('[data-pane]').forEach(p => p.classList.toggle('on', p.dataset.pane === t)); render();
+};
+document.addEventListener('input', render); document.addEventListener('change', render);
+render();
+</script>
+</body></html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Image Compressor and Resizer: JPG, PNG, WebP | RateKit</title>
+<meta name="description" content="Compress and resize images for free in your browser. Shrink JPG, PNG and WebP photos for websites, email and listings. Nothing is uploaded.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/image-compressor/">
+<link rel="stylesheet" href="../freelance-calc/style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once approved -->
+<style>
+.drop{border:2px dashed var(--line);border-radius:14px;padding:34px 20px;text-align:center;background:var(--card);cursor:pointer;display:block}
+.drop.over{border-color:var(--accent);background:var(--accent-soft)}
+.drop strong{display:block;font-size:1.1rem;margin-bottom:4px}
+.opts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+@media (max-width:600px){.opts{grid-template-columns:minmax(0,1fr)}}
+.list{display:grid;gap:10px}
+.it{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+.it img{width:64px;height:64px;object-fit:cover;border-radius:6px}
+.it .n{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.it .s{font-size:.88rem;color:var(--muted)}.it .s b{color:var(--accent)}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:9px 14px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff;text-decoration:none}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0}
+</style></head><body>
+<header><a class="logo" href="../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../qr-code-generator/">QR codes</a><a href="../background-remover/">Remove background</a></nav></header>
+<main>
+<h1>Free image compressor and resizer</h1>
+<p class="lead">Make photos smaller for websites, email and online listings. Everything happens in your browser, so your images are never uploaded.</p>
+<div class="opts">
+  <div><label for="q">Quality <small id="qv">(80%)</small></label><input id="q" type="range" min="30" max="100" value="80"></div>
+  <div><label for="w">Max width <small>(px, 0 = keep size)</small></label><input id="w" type="number" value="1920" min="0" step="10"></div>
+  <div><label for="fmt">Format</label><select id="fmt"><option value="image/jpeg">JPG (smallest for photos)</option><option value="image/webp">WebP (smaller, modern)</option><option value="image/png">PNG (lossless)</option><option value="keep">Same as original</option></select></div>
+</div>
+<label class="drop" id="drop" for="file"><strong>Drop images here, or tap to choose</strong><span class="small">Several at once is fine. JPG, PNG, WebP.</span><input id="file" type="file" accept="image/*" multiple hidden></label>
+<div class="bar" id="bar" style="display:none"><span id="total"></span><button class="btn" id="all" type="button">Download all</button><button class="btn ghost" id="clear" type="button">Clear</button></div>
+<div class="list" id="list"></div>
+<div class="ad"><!-- ad slot --></div>
+<h2>How much should I compress?</h2>
+<p>For photos on a website, JPG or WebP at 70 to 85% quality and 1,600 to 2,000 pixels wide usually looks identical to the original at a fraction of the size. For email attachments, 1,280 pixels wide is plenty. Use PNG for screenshots, logos and graphics with sharp edges or transparency.</p>
+<h2>Frequently asked questions</h2>
+<details><summary>Are my images uploaded?</summary><p>No. Compression runs entirely in your browser using your device, so your photos stay private.</p></details>
+<details><summary>Is there a file limit?</summary><p>No limit on the number of images. Very large photos may take a second or two each on older phones.</p></details>
+<details><summary>Does it remove photo metadata?</summary><p>Yes. Re-encoding the image strips EXIF data such as camera details and GPS location, which is good for privacy.</p></details>
+<h2>More free tools</h2>
+<div class="cards"><a href="../background-remover/"><strong>Background remover</strong><span>Transparent PNGs with AI.</span></a><a href="../qr-code-generator/"><strong>QR code generator</strong><span>Static codes that never expire.</span></a><a href="../invoice-generator/"><strong>Invoice generator</strong><span>PDF invoices in seconds.</span></a></div>
+</main>
+<footer>RateKit offers free tools for freelancers and small businesses. · <a href="../freelance-calc/privacy.html">Privacy</a></footer>
+<script>
+const $ = id => document.getElementById(id);
+let files = [], results = [];
+const kb = n => n > 1048576 ? (n / 1048576).toFixed(2) + ' MB' : Math.round(n / 1024) + ' KB';
+const ext = t => ({ 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/png': 'png' }[t] || 'jpg');
+
+async function compress(f) {
+  const bmp = await createImageBitmap(f);
+  const maxW = parseInt($('w').value) || 0, sc = maxW && bmp.width > maxW ? maxW / bmp.width : 1;
+  const c = document.createElement('canvas'); c.width = Math.round(bmp.width * sc); c.height = Math.round(bmp.height * sc);
+  let type = $('fmt').value === 'keep' ? (['image/jpeg', 'image/webp', 'image/png'].includes(f.type) ? f.type : 'image/jpeg') : $('fmt').value;
+  const x = c.getContext('2d');
+  if (type === 'image/jpeg') { x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height); }
+  x.drawImage(bmp, 0, 0, c.width, c.height);
+  const blob = await new Promise(r => c.toBlob(r, type, $('q').value / 100));
+  return { blob, w: c.width, h: c.height, type, resized: sc < 1 };
+}
+async function run() {
+  results = [];
+  $('list').innerHTML = files.map((f, i) => `<div class="it" id="it${i}"><img alt=""><div><div class="n">${f.name.replace(/</g, '&lt;')}</div><div class="s">Compressing…</div></div><span></span></div>`).join('');
+  $('bar').style.display = files.length ? 'flex' : 'none';
+  let before = 0, after = 0;
+  for (let i = 0; i < files.length; i++) {
+    const f = files[i], el = $('it' + i);
+    try {
+      const r = await compress(f); const smaller = r.blob.size < f.size || r.resized;
+      const out = smaller ? r.blob : f; results[i] = { blob: out, name: f.name.replace(/\.[^.]+$/, '') + '-compressed.' + ext(smaller ? r.type : f.type) };
+      before += f.size; after += out.size;
+      const url = URL.createObjectURL(out); el.querySelector('img').src = url;
+      const pct = Math.round((1 - out.size / f.size) * 100);
+      el.querySelector('.s').innerHTML = `${kb(f.size)} → ${kb(out.size)} <b>${pct > 0 ? '−' + pct + '%' : 'no saving'}</b> · ${r.w}×${r.h}`;
+      el.lastElementChild.innerHTML = `<a class="btn" href="${url}" download="${results[i].name}">Download</a>`;
+    } catch (e) { el.querySelector('.s').textContent = 'Could not read this image.'; }
+  }
+  $('total').textContent = before ? `Total: ${kb(before)} → ${kb(after)} (saved ${Math.max(0, Math.round((1 - after / before) * 100))}%)` : '';
+}
+function add(list) { files = [...list].filter(f => f.type.startsWith('image/')); run(); }
+$('file').onchange = e => add(e.target.files);
+const d = $('drop');
+['dragenter', 'dragover'].forEach(v => d.addEventListener(v, e => { e.preventDefault(); d.classList.add('over'); }));
+['dragleave', 'drop'].forEach(v => d.addEventListener(v, e => { e.preventDefault(); d.classList.remove('over'); }));
+d.addEventListener('drop', e => add(e.dataTransfer.files));
+$('q').oninput = () => { $('qv').textContent = `(${$('q').value}%)`; };
+['q', 'w', 'fmt'].forEach(id => $(id).addEventListener('change', () => files.length && run()));
+$('all').onclick = () => results.forEach((r, i) => r && setTimeout(() => { const a = document.createElement('a'); a.href = URL.createObjectURL(r.blob); a.download = r.name; a.click(); }, i * 300));
+$('clear').onclick = () => { files = []; results = []; $('file').value = ''; run(); };
+</script>
+</body></html>
