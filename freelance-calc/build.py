@@ -1,7 +1,7 @@
 """Generates the RateKit calculator pages. Run: python3 build.py"""
 import json, html, datetime, pathlib
 
-BASE = "https://gusluberadzki-ai.github.io/income-sites/freelance-calc/"
+BASE = "https://gusluberadzki-ai.github.io/Freelancer-calculator-site/freelance-calc/"
 SITE = "RateKit"
 OUT = pathlib.Path(__file__).parent
 TODAY = datetime.date.today().isoformat()

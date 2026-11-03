@@ -18,7 +18,7 @@ TickBill is the simplest way for freelancers and contractors to track billable t
 **Single purpose (for review):** Track time spent on client work and calculate earnings.
 **Permission justification, storage:** Saves the user's clients, rates and time entries locally.
 **Data usage:** Does not collect user data.
-**Privacy policy URL:** https://gusluberadzki-ai.github.io/income-sites/chrome-extension/store/privacy.html
+**Privacy policy URL:** https://gusluberadzki-ai.github.io/Freelancer-calculator-site/chrome-extension/store/privacy.html
 **Screenshot:** store-screenshot-1280x800.png
 
 **Money plan:** launch free to collect users and reviews, then add a Pro tier ($3/month or $19 one-off) with ExtensionPay (Stripe) for unlimited history, invoice PDF export and weekly summaries.

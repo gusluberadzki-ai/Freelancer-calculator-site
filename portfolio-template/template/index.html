@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- EDIT: your name and one-line pitch -->
+<title>Alex Morgan · Freelance Designer & Developer</title>
+<meta name="description" content="I design and build fast, beautiful websites for small businesses and startups.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* EDIT: change --accent to your brand colour. Everything else follows. */
+:root{--accent:#ff5a36;--bg:#fbfaf7;--card:#fff;--ink:#16161a;--muted:#62626b;--line:#e8e6e1}
+@media (prefers-color-scheme:dark){:root{--bg:#121214;--card:#1b1b1f;--ink:#f1f1f3;--muted:#a3a3ad;--line:#2a2a30}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Inter,system-ui,sans-serif}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+nav b{font-weight:800}nav b span{color:var(--accent)}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0}nav ul a{text-decoration:none;color:var(--muted);font-size:15px}
+nav ul a:hover{color:var(--ink)}
+@media (max-width:640px){nav ul li:not(:last-child){display:none}}
+.btn{display:inline-block;background:var(--accent);color:#fff!important;text-decoration:none;font-weight:600;padding:12px 22px;border-radius:999px}
+.btn.ghost{background:transparent;color:var(--ink)!important;border:1.5px solid var(--line)}
+.hero{padding:110px 0 80px}
+.hero .tag{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+.hero .tag i{width:8px;height:8px;border-radius:50%;background:#22c55e;display:inline-block}
+h1{font-size:clamp(40px,7vw,76px);line-height:1.03;letter-spacing:-.03em;margin:22px 0;font-weight:800}
+h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:20px;color:var(--muted);max-width:620px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+section{padding:80px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(28px,4vw,40px);letter-spacing:-.02em;margin:0 0 10px}
+.sub{color:var(--muted);margin:0 0 40px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.work a{display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .2s}
+.work a:hover{transform:translateY(-4px)}
+.work .img{aspect-ratio:4/3;background:linear-gradient(135deg,var(--accent),#ffb199)}
+.work .img img{width:100%;height:100%;object-fit:cover;display:block}
+.work .txt{padding:18px 20px}.work h3{margin:0;font-size:19px}.work p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px}
+.svc .n{color:var(--accent);font-weight:800}.svc h3{margin:8px 0}.svc p{color:var(--muted);margin:0}
+.svc .price{margin-top:14px;font-weight:600}
+blockquote{margin:0;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;font-size:18px}
+blockquote footer{margin-top:14px;font-size:15px;color:var(--muted)}
+.about{display:grid;grid-template-columns:1fr 1.4fr;gap:50px;align-items:center}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+.about .photo{aspect-ratio:1;border-radius:24px;background:linear-gradient(135deg,#ffd4c7,var(--accent))}
+.contact{text-align:center}
+.contact h2{font-size:clamp(34px,6vw,60px)}
+.foot{padding:30px 0;color:var(--muted);font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.reveal{opacity:0;transform:translateY(16px);transition:.6s}.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><b>Alex<span>.</span></b>
+<ul><li><a href="#work">Work</a></li><li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a class="btn" href="#contact">Hire me</a></li></ul></div></nav>
+
+<header class="hero"><div class="wrap">
+  <span class="tag"><i></i> Available for new projects</span>
+  <h1>I build websites that <em>win clients</em> for small businesses.</h1>
+  <p>Freelance designer and developer. I help founders and local businesses look professional online, fast.</p>
+  <div class="ctas"><a class="btn" href="#contact">Start a project</a><a class="btn ghost" href="#work">See my work</a></div>
+</div></header>
+
+<section id="work"><div class="wrap">
+  <h2 class="reveal">Selected work</h2><p class="sub reveal">A few recent projects. Replace these with yours.</p>
+  <div class="grid work">
+    <!-- EDIT: duplicate a block per project. Put an image in images/ and use <img src="images/x.jpg" alt=""> inside .img -->
+    <a class="reveal" href="#"><div class="img"></div><div class="txt"><h3>Bloom Coffee</h3><p>Brand site and online ordering · 2026</p></div></a>
+    <a class="reveal" href="#"><div class="img" style="filter:hue-rotate(60deg)"></div><div class="txt"><h3>Northwind Legal</h3><p>Website redesign · +40% enquiries</p></div></a>
+    <a class="reveal" href="#"><div class="img" style="filter:hue-rotate(180deg)"></div><div class="txt"><h3>Fitloop App</h3><p>Landing page and waitlist · 2025</p></div></a>
+  </div>
+</div></section>
+
+<section id="services"><div class="wrap">
+  <h2 class="reveal">Services</h2><p class="sub reveal">Clear packages, no surprises.</p>
+  <div class="grid">
+    <div class="svc reveal"><div class="n">01</div><h3>Landing page</h3><p>One high-converting page, designed and built in a week.</p><div class="price">From $1,200</div></div>
+    <div class="svc reveal"><div class="n">02</div><h3>Business website</h3><p>Up to 6 pages, mobile-first, with SEO basics and analytics.</p><div class="price">From $3,000</div></div>
+    <div class="svc reveal"><div class="n">03</div><h3>Monthly care</h3><p>Updates, fixes and small changes whenever you need them.</p><div class="price">$250 / month</div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <h2 class="reveal">Kind words</h2><p class="sub reveal">What clients say.</p>
+  <div class="grid">
+    <blockquote class="reveal">"Alex turned a vague idea into a site we're proud of, ahead of schedule."<footer>Sam Lee, founder of Bloom Coffee</footer></blockquote>
+    <blockquote class="reveal">"Our enquiries went up within the first month. Easy to work with."<footer>Priya Shah, Northwind Legal</footer></blockquote>
+  </div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+  <div class="photo reveal"><!-- EDIT: <img src="images/me.jpg" alt="Alex Morgan" style="width:100%;height:100%;object-fit:cover;border-radius:24px"> --></div>
+  <div class="reveal"><h2>Hi, I'm Alex.</h2>
+    <p>I've spent 8 years designing and building websites for small businesses. I care about sites that load fast, look sharp on every phone, and actually bring in work.</p>
+    <p>I work with clients worldwide from a quiet corner of the internet.</p></div>
+</div></section>
+
+<section id="contact" class="contact"><div class="wrap">
+  <h2 class="reveal">Let's work together.</h2>
+  <p class="sub reveal">Tell me about your project and I'll reply within a day.</p>
+  <!-- EDIT: your email -->
+  <a class="btn reveal" href="mailto:hello@example.com">hello@example.com</a>
+</div></section>
+
+<div class="wrap foot"><span>© <span id="y"></span> Alex Morgan</span><span><a href="#">LinkedIn</a> · <a href="#">Dribbble</a> · <a href="#">GitHub</a></span></div>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body></html>

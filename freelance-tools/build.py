@@ -1,10 +1,10 @@
 """Builds the Freelance Toolbox directory from tools.json. Run: python3 build.py"""
 import json, html, re, pathlib, datetime
-BASE="https://gusluberadzki-ai.github.io/income-sites/freelance-tools/"
+BASE="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/freelance-tools/"
 OUT=pathlib.Path(__file__).parent
 data=json.loads((OUT/"tools.json").read_text())
 slug=lambda s: re.sub(r"[^a-z0-9]+","-",s.lower()).strip("-")
-SUBMIT="https://github.com/gusluberadzki-ai/income-sites/issues/new?title=Tool+submission:+&body=Name:%0AWebsite:%0ACategory:%0AOne-line+description:"
+SUBMIT="https://github.com/gusluberadzki-ai/Freelancer-calculator-site/issues/new?title=Tool+submission:+&body=Name:%0AWebsite:%0ACategory:%0AOne-line+description:"
 def head(t,d,p): return f"""<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(t)} | Freelance Toolbox</title><meta name="description" content="{html.escape(d)}"><link rel="canonical" href="{BASE}{p}">
 <link rel="stylesheet" href="style.css"><style>.tool{{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}}.tool h3{{margin:0 0 4px}}.tool p{{margin:0 0 8px;color:var(--muted)}}.feat{{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}}.pill{{font-size:.75rem;background:var(--accent);color:#fff;border-radius:20px;padding:2px 8px;margin-left:6px;vertical-align:middle}}</style>
