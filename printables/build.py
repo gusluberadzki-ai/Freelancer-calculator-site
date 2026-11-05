@@ -49,6 +49,7 @@ def reading():
 PRODUCTS = [("Daily-Planner", "#2b8a3e", "#e6f4ea", daily), ("Weekly-Planner", "#1864ab", "#e7f0fa", weekly), ("Habit-Tracker-Printable", "#5f3dc4", "#efeafc", habit),
             ("Workout-Log", "#c92a2a", "#fdeaea", workout), ("Reading-Journal", "#a0522d", "#f7ede6", reading)]
 exec((pathlib.Path(__file__).parent / "more_printables.py").read_text())
+exec((pathlib.Path(__file__).parent / "more_printables2.py").read_text())
 SIZES = {"A4": ("210mm", "297mm"), "Letter": ("8.5in", "11in")}
 jobs = []
 for name, c, s, fn in PRODUCTS:
