@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Resume Builder: Make a Professional CV PDF in Minutes | RateKit</title>
+<meta name="description" content="Free resume builder with live preview. Fill in your details, pick a clean ATS-friendly template and download your resume or CV as a PDF. No sign-up, nothing uploaded.">
+<link rel="canonical" href="https://gusluberadzki-ai.github.io/Freelancer-calculator-site/resume-builder/">
+<link rel="stylesheet" href="../freelance-calc/style.css">
+<!-- ADSENSE: paste the AdSense <script> tag here once approved -->
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"RateKit Resume Builder","applicationCategory":"BusinessApplication","operatingSystem":"Any","url":"https://gusluberadzki-ai.github.io/Freelancer-calculator-site/resume-builder/","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD"},{"@type":"Offer","price":"7","priceCurrency":"CHF","name":"Resume Builder Pro"}]}</script>
+<style>
+header,main{max-width:1240px}
+.app{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:24px;align-items:start}
+@media (max-width:960px){.app{grid-template-columns:minmax(0,1fr)}.sheetwrap{position:static!important}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+.panel h3{margin:18px 0 8px;font-size:1rem;display:flex;justify-content:space-between;align-items:center}.panel h3:first-child{margin-top:0}
+textarea{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;min-height:70px;resize:vertical}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g2>*{min-width:0}
+@media (max-width:480px){.g2{grid-template-columns:1fr}}
+.f{margin-bottom:8px}
+.entry{border:1px solid var(--line);border-radius:10px;padding:12px;margin-bottom:10px;background:var(--bg)}
+.entry .row{display:flex;justify-content:flex-end;gap:6px;margin-bottom:6px}
+.mini{border:1px solid var(--line);background:var(--card);color:var(--muted);border-radius:6px;padding:2px 9px;cursor:pointer;font-size:.85rem}
+.btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:11px 18px;font-weight:600;font-size:1rem;background:var(--accent);color:#fff;text-decoration:none}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
+.btn.sm{padding:6px 12px;font-size:.88rem}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 14px}
+.tpls{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+@media (max-width:480px){.tpls{grid-template-columns:repeat(2,1fr)}}
+.tpls button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:9px 4px;cursor:pointer;font-size:.88rem}
+.tpls button.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft);font-weight:700}
+.tpls button small{display:block;color:var(--muted);font-size:.72rem}
+.swatches{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.swatches button{width:28px;height:28px;border-radius:50%;border:2px solid var(--card);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.swatches button.on{box-shadow:0 0 0 2px var(--ink)}
+.pro{background:var(--accent-soft);border-radius:10px;padding:14px;margin:14px 0;font-size:.93rem}
+.pro ul{margin:6px 0 10px;padding-left:20px}
+#msg{display:none;background:#fff4d6;color:#5a4300;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:.93rem}
+.tabs{display:flex;gap:6px;margin-bottom:10px}
+.tabs button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;cursor:pointer}
+.tabs button.on{background:var(--ink);color:var(--card)}
+.sheetwrap{position:sticky;top:12px}
+.scaler{overflow:hidden;border-radius:6px;box-shadow:0 4px 24px rgba(0,0,0,.1)}
+/* ---------- The paper: always light ---------- */
+.sheet{--c:#0b6e4f;background:#fff;color:#222;width:794px;min-height:1123px;padding:56px 60px;font:13.5px/1.5 "Helvetica Neue",Arial,sans-serif;transform-origin:top left;position:relative}
+.sheet h1{font-size:30px;margin:0;line-height:1.15;color:#111}
+.sheet .jt{font-size:15px;color:var(--c);margin-top:4px;font-weight:600}
+.sheet .ct{color:#555;margin-top:8px;font-size:12.5px}
+.sheet .ct span:not(:last-child)::after{content:"  ·  ";color:#bbb}
+.sheet h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--c);margin:22px 0 8px;padding-bottom:4px;border-bottom:1.5px solid var(--c)}
+.sheet .job{margin-bottom:12px;break-inside:avoid}
+.sheet .jh{display:flex;justify-content:space-between;gap:12px}
+.sheet .jh b{color:#111}
+.sheet .jh .d{color:#666;white-space:nowrap;font-size:12.5px}
+.sheet .sub{color:#555;font-style:italic}
+.sheet ul{margin:4px 0 0;padding-left:18px}.sheet li{margin:2px 0}
+.sheet p{margin:0}
+.sheet .skills{display:flex;flex-wrap:wrap;gap:6px}
+.sheet .skills span{background:#f1f3f2;border-radius:4px;padding:2px 8px;font-size:12.5px}
+.sheet .wm{position:absolute;bottom:22px;left:0;right:0;text-align:center;font-size:10.5px;color:#aaa}
+/* Modern: sidebar */
+.sheet.modern{padding:0;display:grid;grid-template-columns:250px 1fr}
+.sheet.modern .side{background:var(--c);color:#fff;padding:48px 26px}
+.sheet.modern .side h1{color:#fff;font-size:26px}.sheet.modern .side .jt{color:rgba(255,255,255,.85)}
+.sheet.modern .side h2{color:#fff;border-color:rgba(255,255,255,.4)}
+.sheet.modern .side .ct{color:rgba(255,255,255,.9)}.sheet.modern .side .ct span{display:block;word-break:break-word}.sheet.modern .side .ct span::after{content:none}
+.sheet.modern .side .skills span{background:rgba(255,255,255,.16);color:#fff}
+.sheet.modern .mainc{padding:48px 36px}
+/* Minimal */
+.sheet.minimal{font-family:Georgia,"Times New Roman",serif}
+.sheet.minimal .head{text-align:center}
+.sheet.minimal h1{font-weight:400;font-size:34px;letter-spacing:.02em}
+.sheet.minimal h2{border:0;text-align:center;color:#111;letter-spacing:.3em;font-weight:400}
+.sheet.minimal .jt{color:#444;font-weight:400;font-style:italic}
+/* Executive */
+.sheet.executive .head{background:var(--c);color:#fff;margin:-56px -60px 10px;padding:40px 60px 26px}
+.sheet.executive .head h1{color:#fff;font-size:32px;letter-spacing:.03em;text-transform:uppercase}
+.sheet.executive .head .jt{color:rgba(255,255,255,.88)}.sheet.executive .head .ct{color:rgba(255,255,255,.88)}
+.sheet.executive .head .ct span::after{color:rgba(255,255,255,.5)}
+.sheet.executive h2{border:0;border-left:4px solid var(--c);padding:0 0 0 10px;color:#111}
+/* Cover letter */
+.sheet .letter{white-space:pre-line;margin-top:28px;font-size:14px;line-height:1.65}
+.sheet .letter .to{margin-bottom:22px;color:#444}
+@media print{
+  @page{size:A4;margin:0}
+  body{background:#fff}header,footer,.panel,.actions,.no-print,.tabs,#msg{display:none!important}
+  main{max-width:none;padding:0;margin:0}.app{display:block}.sheetwrap{position:static}
+  .scaler{box-shadow:none;border-radius:0;height:auto!important;overflow:visible}
+  .sheet{transform:none!important;width:210mm;min-height:297mm}
+  .sheet.modern{min-height:297mm}
+}
+</style></head><body>
+<header class="no-print"><a class="logo" href="../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../tools/">All tools</a><a href="../invoice-generator/">Invoices</a><a href="../freelance-calc/">Calculators</a></nav></header>
+<main>
+<div class="no-print">
+<h1>Free resume builder</h1>
+<p class="lead">Type your details on the left and watch your resume take shape. Download it as a PDF when you're happy. Nothing is uploaded: your resume stays in this browser.</p>
+</div>
+<div class="app">
+<div class="panel" id="editor">
+  <h3>Template</h3>
+  <div class="tpls" id="tpls"></div>
+  <div class="swatches" id="sw" title="Accent colour"></div>
+
+  <div class="pro" id="proBox"><strong>Resume Builder Pro: CHF 7 one-off</strong>
+    <ul><li>3 extra templates: Modern, Minimal and Executive</li><li>Any accent colour</li><li>Matching cover letter</li><li>No "Made with RateKit" line on your PDF</li></ul>
+    <a class="btn sm" id="buyPro" href="#" target="_blank" rel="noopener">Get Pro</a>
+    <div style="margin-top:10px"><label for="key">Already bought? Paste your unlock code or licence key</label><input id="key" placeholder="RK-XXXXXXXXXXXX"><div id="keyMsg" class="small"></div></div>
+  </div>
+
+  <h3>About you</h3>
+  <div class="g2"><div class="f"><label for="name">Full name</label><input id="name" data-f="name"></div><div class="f"><label for="title">Job title</label><input id="title" data-f="title"></div></div>
+  <div class="g2"><div class="f"><label for="email">Email</label><input id="email" data-f="email" type="email"></div><div class="f"><label for="phone">Phone</label><input id="phone" data-f="phone"></div></div>
+  <div class="g2"><div class="f"><label for="loc">City, country</label><input id="loc" data-f="loc"></div><div class="f"><label for="web">Website or LinkedIn</label><input id="web" data-f="web"></div></div>
+  <div class="f"><label for="summary">Profile <small>(2 to 4 sentences)</small></label><textarea id="summary" data-f="summary"></textarea></div>
+
+  <h3>Experience <button class="mini" type="button" data-add="exp">+ Add job</button></h3>
+  <div id="exp"></div>
+  <h3>Education <button class="mini" type="button" data-add="edu">+ Add</button></h3>
+  <div id="edu"></div>
+  <h3>Skills</h3>
+  <div class="f"><label for="skills">Comma separated</label><textarea id="skills" data-f="skills" style="min-height:50px"></textarea></div>
+  <div class="g2"><div class="f"><label for="langs">Languages</label><input id="langs" data-f="langs" placeholder="English (native), Spanish (B2)"></div><div class="f"><label for="certs">Certifications</label><input id="certs" data-f="certs"></div></div>
+
+  <h3>Cover letter <small style="font-weight:400;color:var(--muted)">Pro</small></h3>
+  <div class="f"><label for="clTo">Addressed to</label><textarea id="clTo" data-f="clTo" style="min-height:50px" placeholder="Hiring Manager&#10;Company Ltd"></textarea></div>
+  <div class="f"><label for="clBody">Letter</label><textarea id="clBody" data-f="clBody" style="min-height:160px"></textarea></div>
+
+  <h3>Backup</h3>
+  <div class="actions" style="margin:0"><button class="btn ghost sm" id="export" type="button">Save to file</button><label class="btn ghost sm" style="margin:0;font-weight:600">Load from file<input id="import" type="file" accept="application/json" hidden></label><button class="btn ghost sm" id="clear" type="button">Start blank</button></div>
+</div>
+<div class="sheetwrap">
+  <div class="tabs no-print"><button class="on" data-doc="cv" type="button">Resume</button><button data-doc="cl" type="button">Cover letter</button></div>
+  <div id="msg" class="no-print"></div>
+  <div class="actions no-print"><button class="btn" id="pdf" type="button">Download PDF</button></div>
+  <div class="scaler" id="scaler"><div class="sheet" id="sheet"></div></div>
+  <p class="small no-print">In the print window pick "Save as PDF" and turn off headers and footers.</p>
+</div>
+</div>
+
+<div class="no-print">
+<h2>How to write a resume that gets interviews</h2>
+<p>Keep it to one page unless you have more than ten years of relevant experience. Start with a short profile that says what you do and what you're looking for. Under each job, write two to four bullet points that start with a verb and include a number where you can, such as "Cut monthly reporting time by 40%". List the skills from the job advert that you really have, using the same words, because applicant tracking systems (ATS) match on keywords.</p>
+<h2>Frequently asked questions</h2>
+<details><summary>Is this resume builder really free?</summary><p>Yes. The Classic template and PDF download are free with no sign-up and no limit. Pro is an optional one-off upgrade for extra templates, colours, a cover letter and no RateKit line.</p></details>
+<details><summary>Are the templates ATS-friendly?</summary><p>Yes. They use real text (not images), standard section headings and a simple layout, so applicant tracking systems can read them.</p></details>
+<details><summary>Is my data stored anywhere?</summary><p>Only in your own browser, so you can come back and edit it. Use "Save to file" to keep a backup or move it to another device.</p></details>
+<details><summary>Resume or CV: what's the difference?</summary><p>In the US a resume is a 1 to 2 page summary and a CV is a long academic record. In the UK, Europe and most other places "CV" means the same as a resume. This tool makes both.</p></details>
+<h2>More free tools</h2>
+<div class="cards"><a href="../invoice-generator/"><strong>Invoice generator</strong><span>Make a PDF invoice in seconds.</span></a>
+<a href="../salary/"><strong>Salary to hourly</strong><span>Compare job offers fairly.</span></a>
+<a href="../word-counter/"><strong>Word counter</strong><span>Check your cover letter length.</span></a></div>
+</div>
+</main>
+<footer class="no-print">RateKit offers free tools for freelancers and job seekers. · <a href="../freelance-calc/privacy.html">Privacy</a></footer>
+<script src="app.js"></script>
+</body></html>
