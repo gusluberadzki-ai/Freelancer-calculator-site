@@ -240,6 +240,7 @@ show(n.toLocaleString(),'characters',L.map(([k,m])=>[k,n<=m?(m-n)+' left ✓':(n
  [("Do emoji count as one character?", "This counter counts each emoji as one character, which matches what most platforms show you.")], "Text")
 
 exec((OUT / "more_tools.py").read_text())
+exec((OUT / "round8_tools.py").read_text())
 
 CSS = """.grid textarea{width:100%;min-height:130px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
 .btn{display:inline-block;cursor:pointer;border:0;border-radius:8px;padding:10px 16px;font-weight:600;font-size:.95rem;background:var(--accent);color:#fff}.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink)}
@@ -249,7 +250,7 @@ def head(t, d, p):
 <title>{html.escape(t)} | RateKit</title><meta name="description" content="{html.escape(d)}"><link rel="canonical" href="{BASE}{p}">
 <link rel="stylesheet" href="../../freelance-calc/style.css"><style>{CSS}</style>
 <!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
-<header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a></nav></header><main>"""
+<header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a><a href="../../blog/">Guides</a></nav></header><main>"""
 FOOT = """</main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>"""
 for t in T:
     d = OUT / t["slug"]; d.mkdir(exist_ok=True)

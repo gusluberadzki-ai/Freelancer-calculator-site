@@ -17,7 +17,8 @@ Everything here is a static site deployed free to GitHub Pages by `.github/workf
 | `percentage-calculator/`, `date-calculator/`, `word-counter/` | Evergreen ad-supported tools | /<folder>/ |
 | `salary/` | 302 programmatic salary pages (`python3 build.py`) | /salary/ |
 | `qr-code-generator/`, `image-compressor/` | Free tools (ads) | /<folder>/ |
-| `tools/` | 21 generated free tools (`python3 build.py`) | /tools/ |
+| `tools/` | 69 generated free tools (`python3 build.py`; tool lists in build.py, more_tools.py, round8_tools.py) | /tools/ |
+| `blog/` | RateKit Blog: affiliate articles (`python3 build.py`; posts in posts.py, referral links in affiliates.json) | /blog/ |
 | `portfolio-template/` | Portfolio website template sold on Gumroad | /portfolio-template/template/ (demo) |
 
 Rebuild a generated site with `python3 build.py` inside its folder.
