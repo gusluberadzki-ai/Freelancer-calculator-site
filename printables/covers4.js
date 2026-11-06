@@ -1,0 +1,21 @@
+// node printables/covers4.js (from repo root): renders 2000x1600 covers for the round-8 batch
+const {chromium}=require('playwright');const path=require('path');
+const sheet=[['templates/products/holiday-cover.png','Holiday Gift & Christmas Budget','Gift list · Budget by group · Bought & wrapped',['Person','Gift','Budget','Spent'],[['Mum','Cashmere scarf','$60','$55'],['Sam','Weekend away','$250','$240'],['Lily','Lego set','$45','$42']],'#b02a37','#d6404e'],
+['templates/products/mileage-cover.png','Mileage Log','Business trips · Auto deduction · Monthly totals',['Date','Trip','Miles','Deduction'],[['6 Jan','Client office','28','$19.60'],['9 Jan','Print shop','11','$7.70'],['3 Feb','Coworking','31','$21.70']],'#1c7ed6','#4dabf7'],
+['templates/products/loan-cover.png','Loan & Mortgage Calculator','Payment · Full schedule · Extra payment savings',['#','Payment','Interest','Balance'],[['1','$1,389.58','$937.50','$249,448'],['2','$1,389.58','$935.43','$248,894'],['Saved','','$21,871','2.8 yrs']],'#343a40','#5c6670'],
+['templates/products/timesheet-cover.png','Freelance Timesheet & Billable Hours','Hours · Rates · Unbilled work by client',['Client','Hours','Billable','Not invoiced'],[['Acme Ltd','4.0','$340','$0'],['Beta Co','2.5','$175','$175'],['Studio Nine','1.0','$0','$0']],'#0ca678','#20c997'],
+['templates/products/car-cover.png','Car Maintenance & Fuel Log','Fuel economy · Service reminders · Cost per km',['Date','Odometer','L/100 km','Cost'],[['17 Jan','45,790','6.9','$69.37'],['1 Feb','46,355','6.9','$66.64'],['Service','60,500','due','$289']],'#e8590c','#fd7e14'],
+['templates/products/dividend-cover.png','Dividend Income Tracker','Yield · Expected income · Monthly payouts',['Ticker','Shares','Yield','Per year'],[['VYM','40','2.83%','$136.00'],['KO','25','3.13%','$48.50'],['O','60','5.54%','$189.60']],'#5f3dc4','#7950f2']];
+const prints=[['Christmas-Planner','Christmas Planner','#c92a2a'],['New-Year-Reset-Planner','New Year Reset Planner','#1c7ed6'],['Medication-Tracker','Medication Tracker','#0c8599'],['Mood-Tracker','Mood Tracker','#7048e8']];
+const pills=t=>`<div style="display:flex;gap:24px;margin-top:56px">${t.map(x=>`<span style="background:rgba(255,255,255,.18);padding:16px 32px;border-radius:50px;font-size:40px">${x}</span>`).join('')}</div>`;
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:2000,height:1600}});
+for(const [f,t,s,h,rows,c1,c2] of sheet){await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:linear-gradient(135deg,${c1},${c2});font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+<h1 style="font-size:110px;margin:0;text-align:center;line-height:1.05;max-width:1800px">${t}</h1><p style="font-size:48px;margin:24px 0 56px;opacity:.92">${s}</p>
+<div style="background:#fff;border-radius:24px;width:1500px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden"><table style="width:100%;border-collapse:collapse;font-size:40px">
+<tr>${h.map(x=>`<th style="background:${c1};color:#fff;padding:18px">${x}</th>`).join('')}</tr>${rows.map((r,i)=>`<tr>${r.map((x,j)=>`<td style="color:#222;padding:16px 24px;border-bottom:2px solid #eee;text-align:${j?'right':'left'};font-weight:${j?400:600};background:${i%2?'#f3f3f1':'#fff'}">${x}</td>`).join('')}</tr>`).join('')}</table></div>
+${pills(['Google Sheets','Excel','Instant download'])}</body>`);await p.screenshot({path:f});}
+for(const [f,t,c] of prints){const img='data:image/png;base64,'+require('fs').readFileSync('printables/out/'+f+'-preview.png').toString('base64');
+await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:${c};font-family:system-ui,sans-serif;color:#fff;display:flex;align-items:center;gap:80px;padding:0 110px;box-sizing:border-box">
+<div style="width:760px;flex:none"><h1 style="font-size:120px;margin:0;line-height:1.02">${t}</h1><p style="font-size:50px;opacity:.92;margin:30px 0 0">Printable PDF · A4 & US Letter</p>${pills(['Print at home','GoodNotes ready'])}</div>
+<img src="${img}" style="height:1240px;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:rotate(2deg);background:#fff"></body>`);await p.waitForTimeout(200);await p.screenshot({path:'printables/out/'+f+'-cover.png'});}
+await b.close()})();
