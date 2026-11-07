@@ -251,7 +251,7 @@ def head(t, d, p):
 <link rel="stylesheet" href="../../freelance-calc/style.css"><style>{CSS}</style>
 <!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
 <header><a class="logo" href="../../freelance-calc/">Rate<span>Kit</span></a><nav><a href="../">All tools</a><a href="../../blog/">Guides</a></nav></header><main>"""
-FOOT = """</main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>"""
+FOOT = """<p class="allaccess" style="background:var(--accent-soft);border-radius:10px;padding:12px 14px;margin-top:28px;font-size:.93rem"><strong>RateKit All-Access:</strong> Pro in every RateKit app plus 50+ spreadsheet and printable templates, CHF 6/month. <a href="../../pro/">See what's included</a></p></main><footer>RateKit offers free tools for freelancers and small businesses. Results are estimates. · <a href="../../freelance-calc/privacy.html">Privacy</a></footer></body></html>"""
 for t in T:
     d = OUT / t["slug"]; d.mkdir(exist_ok=True)
     others = [o for o in T if o["cat"] == t["cat"] and o is not t][:4] or T[:4]

@@ -45,8 +45,8 @@ function render() {
   FIELDS.forEach(f => ls.set(f, $(f).value)); ls.set('items', items);
 }
 
-function setPro(on) {
-  pro = on; ls.set('pro', on);
+function setPro(on, viaPass) {
+  pro = on; if (!viaPass) ls.set('pro', on);
   $('proBox').style.display = on ? 'none' : '';
   $('proTools').style.display = on ? '' : 'none';
   drawClients(); render();
@@ -64,6 +64,13 @@ if (!$('date').value) $('date').value = iso(today);
 if (!$('due').value) $('due').value = iso(due);
 if (PRO_URL) $('buyPro').href = PRO_URL; else { $('buyPro').textContent = 'Coming soon'; $('buyPro').removeAttribute('href'); }
 drawItems(); setPro(pro);
+
+// RateKit All-Access membership (pro/pass.js) also unlocks Pro, without touching the one-off purchase flag.
+if (window.RKPass) {
+  const own = () => !!ls.get('pro', false);
+  if (!own() && RKPass.active()) setPro(true, true);
+  RKPass.fromHash().then(() => RKPass.verify()).then(ok => { if (!own()) setPro(ok, true); });
+}
 
 document.addEventListener('input', e => {
   const t = e.target;
@@ -94,6 +101,7 @@ $('saveClient').onclick = () => { const cs = ls.get('clients', []); if ($('to').
 $('clients').onchange = e => { if (e.target.value !== '') { $('to').value = ls.get('clients', [])[+e.target.value]; render(); } };
 $('key').onchange = async () => {
   const key = $('key').value.trim(); if (!key) return;
+  if (window.RKPass && await RKPass.unlock(key)) { $('keyMsg').textContent = 'All-Access unlocked. Thank you!'; setPro(true, true); return; }
   if (!PRO_PRODUCT_ID) { $('keyMsg').textContent = 'Pro is not on sale yet.'; return; }
   $('keyMsg').textContent = 'Checking…';
   try {
