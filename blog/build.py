@@ -49,7 +49,7 @@ def page(title, desc, path, body, depth, extra_head=""):
 <link rel="stylesheet" href="{up}freelance-calc/style.css"><style>{CSS}</style>{extra_head}
 <!-- ADSENSE: paste the AdSense <script> tag here once approved --></head><body>
 <header><a class="logo" href="{up}freelance-calc/">Rate<span>Kit</span></a><nav><a href="{up}blog/">Blog</a><a href="{up}tools/">Free tools</a></nav></header><main>
-{body}</main><footer>RateKit Blog: practical money and tools guides for freelancers. Some links are affiliate links; see our <a href="{up}blog/disclosure.html">disclosure</a>. Not financial or tax advice. · <a href="{up}freelance-calc/privacy.html">Privacy</a></footer></body></html>"""
+{body}<p class="allaccess" style="background:var(--accent-soft);border-radius:10px;padding:12px 14px;margin-top:28px;font-size:.93rem"><strong>RateKit All-Access:</strong> Pro in every RateKit app plus 50+ spreadsheet and printable templates, CHF 6/month. <a href="{up}pro/">See what's included</a></p></main><footer>RateKit Blog: practical money and tools guides for freelancers. Some links are affiliate links; see our <a href="{up}blog/disclosure.html">disclosure</a>. Not financial or tax advice. · <a href="{up}freelance-calc/privacy.html">Privacy</a></footer></body></html>"""
 
 def words(s):
     return len(re.sub("<[^>]+>", " ", s).split())

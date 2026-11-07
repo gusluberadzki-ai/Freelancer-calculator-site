@@ -125,8 +125,8 @@ function needsPro() {
   return '';
 }
 
-function setPro(on) {
-  pro = on; store.set('pro', on);
+function setPro(on, viaPass) {
+  pro = on; if (!viaPass) store.set('pro', on);
   $('proBox').style.display = on ? 'none' : '';
   drawPickers(); render();
 }
@@ -147,6 +147,7 @@ async function tryUnlock(raw) {
       if (j.success && !j.purchase.refunded && !j.purchase.chargebacked) { $('keyMsg').textContent = 'Pro unlocked. Thank you!'; setPro(true); return true; }
     } catch (e) {}
   }
+  if (window.RKPass && await RKPass.unlock(key)) { $('keyMsg').textContent = 'All-Access unlocked. Thank you!'; setPro(true, true); return true; }
   $('keyMsg').textContent = "That code wasn't recognised. Check it and try again.";
   return false;
 }
@@ -155,6 +156,13 @@ async function tryUnlock(raw) {
 $('buyPro').href = PRO_URL;
 document.querySelectorAll('[data-f]').forEach(el => { el.value = d[el.dataset.f] || ''; });
 drawLists(); drawPickers(); setPro(pro);
+
+// RateKit All-Access membership (pro/pass.js) also unlocks Pro, without touching the one-off purchase flag.
+if (window.RKPass) {
+  const own = () => !!store.get('pro', false);
+  if (!own() && RKPass.active()) setPro(true, true);
+  RKPass.fromHash().then(() => RKPass.verify()).then(ok => { if (!own()) setPro(ok, true); });
+}
 function hashUnlock() {
   const hm = location.hash.match(/unlock=([\w-]+)/);
   if (hm) tryUnlock(decodeURIComponent(hm[1])).then(ok => { if (ok) say('Pro is unlocked on this device. Bookmark this page link to unlock it on other devices too.'); });
