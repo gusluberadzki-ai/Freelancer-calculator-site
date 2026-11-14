@@ -1,6 +1,8 @@
 // CONFIG: fill these in once the Pro product exists on Gumroad.
-const PRO_URL = 'https://luberadzki.gumroad.com/l/ratekit-pro';
-const PRO_PRODUCT_ID = '02vclgFQ_PI3U5MZhZV6Jw==';
+const PRO_URL = 'https://gustawluberadzkie.gumroad.com/l/ratekit-pro';
+// Current store's product first; the old store's id stays so earlier buyers' keys keep working.
+const PRO_PRODUCT_IDS = ['wa5kFz9KCGklh2kH7kx1Dw==', '02vclgFQ_PI3U5MZhZV6Jw=='];
+const PRO_PRODUCT_ID = PRO_PRODUCT_IDS[0];
 
 const $ = id => document.getElementById(id);
 const FIELDS = ['from', 'to', 'num', 'cur', 'date', 'due', 'tax', 'disc', 'notes', 'brand'];
@@ -105,10 +107,14 @@ $('key').onchange = async () => {
   if (!PRO_PRODUCT_ID) { $('keyMsg').textContent = 'Pro is not on sale yet.'; return; }
   $('keyMsg').textContent = 'Checking…';
   try {
-    const r = await fetch('https://api.gumroad.com/v2/licenses/verify', {
-      method: 'POST', body: new URLSearchParams({ product_id: PRO_PRODUCT_ID, license_key: key, increment_uses_count: 'false' })
-    });
-    const j = await r.json();
+    let j = {};
+    for (const id of PRO_PRODUCT_IDS) {
+      const r = await fetch('https://api.gumroad.com/v2/licenses/verify', {
+        method: 'POST', body: new URLSearchParams({ product_id: id, license_key: key, increment_uses_count: 'false' })
+      });
+      j = await r.json();
+      if (j.success) break;
+    }
     if (j.success && !j.purchase.refunded && !j.purchase.chargebacked) { $('keyMsg').textContent = 'Pro unlocked. Thank you!'; setPro(true); }
     else $('keyMsg').textContent = "That key wasn't recognised. Check it and try again.";
   } catch (e) { $('keyMsg').textContent = "Couldn't reach the licence server. Try again in a moment."; }

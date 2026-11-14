@@ -1,5 +1,5 @@
 // CONFIG
-const PRO_URL = 'https://luberadzki.gumroad.com/l/resume-builder-pro';
+const PRO_URL = 'https://gustawluberadzkie.gumroad.com/l/resume-builder-pro';
 const PRO_PRODUCT_ID = ''; // Gumroad product id, used only if licence keys are switched on for the product
 // SHA-256 of the unlock code delivered to buyers on the Gumroad receipt
 const UNLOCK_HASH = '63e08e140c3d601178b5346eb21108ba7f33f26fea751d6b5e529d576438ce92';

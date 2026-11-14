@@ -6,9 +6,9 @@
 //     re-checked with Gumroad every 7 days, so cancelled members lose access automatically.
 (function () {
   const CFG = {
-    BUY_URL: 'https://luberadzki.gumroad.com/l/all-access',
-    PRODUCT_ID: '0qkVfrEj_6xFP5jmYQyifg==',
-    CODE_HASHES: ['d02fc7d857ce270f9570a1b07bb5e406b6f70dcd80d0f5114c5fac2a133f18ff'],
+    BUY_URL: 'https://gustawluberadzkie.gumroad.com/l/all-access',
+    PRODUCT_ID: 'N5Wc_AjNhg7kej3eop064w==',
+    CODE_HASHES: ['794c45b973a4a19f90846020e7338adb6c8db6bd2fd2f80a134c8461e547c071', 'd02fc7d857ce270f9570a1b07bb5e406b6f70dcd80d0f5114c5fac2a133f18ff'],
     RECHECK_MS: 7 * 864e5
   };
   const KEY = 'rk-pass';
