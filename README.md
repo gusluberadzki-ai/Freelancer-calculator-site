@@ -19,6 +19,8 @@ Everything here is a static site deployed free to GitHub Pages by `.github/workf
 | `qr-code-generator/`, `image-compressor/` | Free tools (ads) | /<folder>/ |
 | `tools/` | 69 generated free tools (`python3 build.py`; tool lists in build.py, more_tools.py, round8_tools.py) | /tools/ |
 | `blog/` | RateKit Blog: affiliate articles (`python3 build.py`; posts in posts.py, referral links in affiliates.json) | /blog/ |
+| `pro/` | RateKit All-Access membership page (Gumroad membership CHF 6/mo). `pro/pass.js` is the shared unlock used by invoice-generator and resume-builder; rotate the monthly unlock code by adding its SHA-256 to CODE_HASHES | /pro/ |
+| `digital-planner/` | Hyperlinked GoodNotes/Notability planner PDF generator (`python3 build.py 2027 out.pdf`) | not deployed |
 | `portfolio-template/` | Portfolio website template sold on Gumroad | /portfolio-template/template/ (demo) |
 
 Rebuild a generated site with `python3 build.py` inside its folder.

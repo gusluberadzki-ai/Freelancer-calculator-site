@@ -35,10 +35,10 @@
     "dropboxsign": {"name": "Dropbox Sign", "url": "https://sign.dropbox.com/", "ref": "", "programme": "none"}
   },
   "products": {
-    "tracker": {"name": "Freelance Business Tracker spreadsheet", "url": "https://luberadzki.gumroad.com/l/freelance-tracker", "pitch": "Track clients, invoices, expenses and tax set-aside in one spreadsheet.", "published": false},
-    "debt": {"name": "Debt Payoff Planner spreadsheet", "url": "https://luberadzki.gumroad.com/l/debt-payoff-planner", "pitch": "Plan snowball or avalanche payoff with a month-by-month schedule.", "published": false},
-    "budget": {"name": "Monthly Budget Planner spreadsheet", "url": "https://luberadzki.gumroad.com/l/vmvyxy", "pitch": "A ready-made monthly budget with charts and a savings tracker.", "published": false},
-    "folio": {"name": "Folio portfolio website template", "url": "https://luberadzki.gumroad.com/l/wzzfgi", "pitch": "A fast one-page portfolio site you can host free on GitHub Pages or Netlify.", "published": false},
-    "invoice": {"name": "Invoice Template spreadsheet", "url": "https://luberadzki.gumroad.com/l/invoice-template", "pitch": "A clean, auto-calculating invoice template for Excel and Google Sheets.", "published": false}
+    "tracker": {"name": "Freelance Business Tracker spreadsheet", "url": "https://gustawluberadzkie.gumroad.com/l/freelance-tracker", "pitch": "Track clients, invoices, expenses and tax set-aside in one spreadsheet.", "published": false},
+    "debt": {"name": "Debt Payoff Planner spreadsheet", "url": "https://gustawluberadzkie.gumroad.com/l/debt-payoff-planner", "pitch": "Plan snowball or avalanche payoff with a month-by-month schedule.", "published": false},
+    "budget": {"name": "Monthly Budget Planner spreadsheet", "url": "https://gustawluberadzkie.gumroad.com/l/budget-planner", "pitch": "A ready-made monthly budget with charts and a savings tracker.", "published": false},
+    "folio": {"name": "Folio portfolio website template", "url": "https://gustawluberadzkie.gumroad.com/l/folio-portfolio-template", "pitch": "A fast one-page portfolio site you can host free on GitHub Pages or Netlify.", "published": false},
+    "invoice": {"name": "Invoice Template spreadsheet", "url": "https://gustawluberadzkie.gumroad.com/l/invoice-template-spreadsheet", "pitch": "A clean, auto-calculating invoice template for Excel and Google Sheets.", "published": false}
   }
 }
