@@ -1,0 +1,20 @@
+// node printables/covers6.js: renders 2000x1600 covers for the round-11 batch
+const {chromium}=require('playwright');const path=require('path');
+const sheet=[['templates/products/rota-cover.png','Employee Shift Rota','Shift codes · Hours & wage cost · Cover gaps',['Name','Mon','Tue','Hours'],[['Alex','Early','Early','37.5'],['Sam','Late','Late','37.5'],['Riley','Off','Middle','26.5']],'#364fc7','#5c7cfa'],
+['templates/products/sales-cover.png','Sales Tracker & Dashboard','Revenue · Profit · Best sellers · Channels',['Month','Revenue','Profit','Units'],[['Aug','171.00','118.40','9'],['Sep','226.80','154.10','14'],['Oct','225.50','150.30','12']],'#087f5b','#20c997'],
+['templates/products/portfolio-cover.png','Investment Portfolio Tracker','Gains · Allocation vs target · Rebalancing',['Asset class','Target','Actual','Buy / sell'],[['Global stocks','50%','56.6%','-1,461.75'],['Bonds','20%','17.4%','+583.40'],['Cash','10%','11.3%','-291.55']],'#5f3dc4','#845ef7'],
+['templates/products/bp-cover.png','Blood Pressure Log','Colour-coded readings · Monthly averages · Chart',['Date','Reading','Pulse','Category'],[['Mon 08:00','118/76','66','Normal'],['Mon 20:00','124/79','70','Elevated'],['Tue 08:00','131/82','68','High stage 1']],'#c92a2a','#fa5252'],
+['templates/products/decision-cover.png','Decision Matrix','Weighted scores · Winner · True cost per year',['Criterion','Weight','Option A','Option B'],[['Price','5','6','3'],['Battery life','4','8','9'],['Score / 100','','74','71']],'#e67700','#fcc419']];
+const prints=[['Address-Book-Birthday-Tracker','Address Book & Birthdays','#1c7ed6'],['Pregnancy-Planner','Pregnancy Planner','#e64980'],['Self-Care-Wellness-Journal','Self-Care Journal','#0ca678'],['Homeschool-Planner','Homeschool Planner','#f08c00'],['Craft-Sewing-Project-Planner','Craft & Sewing Project Planner','#7048e8']];
+const pills=t=>`<div style="display:flex;gap:24px;margin-top:56px">${t.map(x=>`<span style="background:rgba(255,255,255,.18);padding:16px 32px;border-radius:50px;font-size:40px">${x}</span>`).join('')}</div>`;
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:2000,height:1600}});
+for(const [f,t,s,h,rows,c1,c2] of sheet){await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:linear-gradient(135deg,${c1},${c2});font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+<h1 style="font-size:110px;margin:0;text-align:center;line-height:1.05;max-width:1800px">${t}</h1><p style="font-size:48px;margin:24px 0 56px;opacity:.92">${s}</p>
+<div style="background:#fff;border-radius:24px;width:1500px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden"><table style="width:100%;border-collapse:collapse;font-size:40px">
+<tr>${h.map(x=>`<th style="background:${c1};color:#fff;padding:18px">${x}</th>`).join('')}</tr>${rows.map((r,i)=>`<tr>${r.map((x,j)=>`<td style="color:#222;padding:16px 24px;border-bottom:2px solid #eee;text-align:${j?'right':'left'};font-weight:${j?400:600};background:${i%2?'#f3f3f1':'#fff'}">${x}</td>`).join('')}</tr>`).join('')}</table></div>
+${pills(['Google Sheets','Excel','Instant download'])}</body>`);await p.screenshot({path:f});}
+for(const [f,t,c] of prints){const img='data:image/png;base64,'+require('fs').readFileSync('printables/out/'+f+'-preview.png').toString('base64');
+await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:${c};font-family:system-ui,sans-serif;color:#fff;display:flex;align-items:center;gap:80px;padding:0 110px;box-sizing:border-box">
+<div style="width:760px;flex:none"><h1 style="font-size:120px;margin:0;line-height:1.02">${t}</h1><p style="font-size:50px;opacity:.92;margin:30px 0 0">Printable PDF · A4 & US Letter</p>${pills(['Print at home','GoodNotes ready'])}</div>
+<img src="${img}" style="height:1240px;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:rotate(2deg);background:#fff"></body>`);await p.waitForTimeout(200);await p.screenshot({path:'printables/out/'+f+'-cover.png'});}
+await b.close()})();
