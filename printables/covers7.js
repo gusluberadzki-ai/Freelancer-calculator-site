@@ -1,0 +1,20 @@
+// node printables/covers7.js: renders 2000x1600 covers for the round-12 batch
+const {chromium}=require('playwright');const path=require('path');
+const sheet=[['templates/products/pocket-cover.png','Pocket Money Tracker','Allowance · Paid jobs · Savings goals for kids',['Child','Earned','Spent','Goal'],[['Mia','42.00','3.50','64%'],['Leo','19.00','3.50','34%'],['Total','61.00','7.00','']],'#1098ad','#3bc9db'],
+['templates/products/fundraising-cover.png','Fundraising Tracker','Donations · Gift Aid · Events · Progress to target',['Donor','Amount','Method','Thanked'],[['Local bakery','250.00','Bank transfer','Yes'],['J. Smith','50.00','Online','Yes'],['Rotary club','100.00','Cheque','No']],'#ae3ec9','#da77f2'],
+['templates/products/recipecost-cover.png','Recipe Cost Calculator','Cost per portion · Suggested prices · Margins',['Margin','Price','Profit each','Per batch'],[['40%','1.95','0.78','9.36'],['50%','2.34','1.17','14.04'],['60%','2.93','1.76','21.07']],'#d9480f','#ff922b'],
+['templates/products/strength-cover.png','Strength Training Tracker','Estimated 1RM · PRs · Weekly volume · Charts',['Lift','Best 1RM','Heaviest','Goal'],[['Squat','125.4','107.5','120'],['Bench press','105.0','90.0','90'],['Deadlift','154.6','132.5','150']],'#343a40','#868e96'],
+['templates/products/revision-cover.png','Exam Revision Planner','Countdown · Topic checklist · Weekly timetable',['Exam','Date','Days left','Ready'],[['Maths P1','Mon 11 May','40','33%'],['English Lit','Wed 13 May','42','75%'],['Biology P1','Fri 15 May','44','25%']],'#1971c2','#4dabf7']];
+const prints=[['Kids-Summer-Holiday-Planner','Kids Summer Holiday Planner','#f59f00'],['Bucket-List-Journal','Bucket List Journal','#0b7285'],['Baby-First-Year-Milestones','Baby First Year Milestones','#4dabf7'],['Small-Business-Planner','Small Business Planner','#2b8a3e'],['Language-Learning-Journal','Language Learning Journal','#c2255c']];
+const pills=t=>`<div style="display:flex;gap:24px;margin-top:56px">${t.map(x=>`<span style="background:rgba(255,255,255,.18);padding:16px 32px;border-radius:50px;font-size:40px">${x}</span>`).join('')}</div>`;
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:2000,height:1600}});
+for(const [f,t,s,h,rows,c1,c2] of sheet){await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:linear-gradient(135deg,${c1},${c2});font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+<h1 style="font-size:110px;margin:0;text-align:center;line-height:1.05;max-width:1800px">${t}</h1><p style="font-size:48px;margin:24px 0 56px;opacity:.92">${s}</p>
+<div style="background:#fff;border-radius:24px;width:1500px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden"><table style="width:100%;border-collapse:collapse;font-size:40px">
+<tr>${h.map(x=>`<th style="background:${c1};color:#fff;padding:18px">${x}</th>`).join('')}</tr>${rows.map((r,i)=>`<tr>${r.map((x,j)=>`<td style="color:#222;padding:16px 24px;border-bottom:2px solid #eee;text-align:${j?'right':'left'};font-weight:${j?400:600};background:${i%2?'#f3f3f1':'#fff'}">${x}</td>`).join('')}</tr>`).join('')}</table></div>
+${pills(['Google Sheets','Excel','Instant download'])}</body>`);await p.screenshot({path:f});}
+for(const [f,t,c] of prints){const img='data:image/png;base64,'+require('fs').readFileSync('printables/out/'+f+'-preview.png').toString('base64');
+await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:${c};font-family:system-ui,sans-serif;color:#fff;display:flex;align-items:center;gap:80px;padding:0 110px;box-sizing:border-box">
+<div style="width:760px;flex:none"><h1 style="font-size:120px;margin:0;line-height:1.02">${t}</h1><p style="font-size:50px;opacity:.92;margin:30px 0 0">Printable PDF · A4 & US Letter</p>${pills(['Print at home','GoodNotes ready'])}</div>
+<img src="${img}" style="height:1240px;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:rotate(2deg);background:#fff"></body>`);await p.waitForTimeout(200);await p.screenshot({path:'printables/out/'+f+'-cover.png'});}
+await b.close()})();
