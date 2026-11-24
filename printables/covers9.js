@@ -1,0 +1,20 @@
+// node printables/covers8.js: renders 2000x1600 covers for the round-13 batch
+const {chromium}=require('playwright');const path=require('path');
+const sheet=[['templates/products/reading-cover.png','Reading Tracker & Stats','Reading goal · Books per month · Genres · Ratings',['Title','Genre','Pages','Rating'],[['The Long Way Home','Fiction','320','★★★★★'],['Starfall','Sci-fi','410','★★★★'],['Ember Crown','Fantasy','610','★★★★★']],'#862e9c','#cc5de8'],
+['templates/products/sleep-cover.png','Sleep Tracker','Hours asleep · Sleep debt · What affects your sleep',['Night','Bed','Wake','Hours'],[['Mon','23:15','07:00','7.4'],['Tue','22:30','06:45','8.0'],['Wed','00:00','07:30','7.2']],'#3b5bdb','#748ffc'],
+['templates/products/shortlet-cover.png','Short-Let Host Tracker','Bookings · Occupancy · Net payout · Profit',['Month','Nights','Occupancy','Net'],[['Jan','11','35%','758.30'],['Feb','9','32%','618.70'],['Mar','10','32%','686.60']],'#e8590c','#ffa94d'],
+['templates/products/okr-cover.png','OKR & Goal Tracker','Goals · Key results · Progress · Weekly check-in',['Goal','Key results','Progress','Status'],[['Grow the business','3','43%','At risk'],['Get fitter','2','58%','At risk'],['Save more','2','58%','At risk']],'#0b7285','#3bc9db'],
+['templates/products/gradebook-cover.png','Teacher Gradebook','Weighted grades · Missing work · Class summary',['Student','Weighted %','Grade','Missing'],[['Amelia','67%','D','2'],['Chloe','71%','C','0'],['Daniel','55%','E','0']],'#c2255c','#f06595']];
+const prints=[['Road-Trip-Planner','Road Trip Planner','#e8590c'],['Meeting-Notes-Work-Planner','Meeting Notes & Work Planner','#364fc7'],['Kids-Birthday-Party-Planner','Kids Birthday Party Planner','#d6336c'],['Bible-Study-Journal','Bible Study Journal','#5f3dc4'],['Puppy-Training-Journal','Puppy Training Journal','#a0522d']];
+const pills=t=>`<div style="display:flex;gap:24px;margin-top:56px">${t.map(x=>`<span style="background:rgba(255,255,255,.18);padding:16px 32px;border-radius:50px;font-size:40px">${x}</span>`).join('')}</div>`;
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:2000,height:1600}});
+for(const [f,t,s,h,rows,c1,c2] of sheet){await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:linear-gradient(135deg,${c1},${c2});font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+<h1 style="font-size:110px;margin:0;text-align:center;line-height:1.05;max-width:1800px">${t}</h1><p style="font-size:48px;margin:24px 0 56px;opacity:.92">${s}</p>
+<div style="background:#fff;border-radius:24px;width:1500px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden"><table style="width:100%;border-collapse:collapse;font-size:40px">
+<tr>${h.map(x=>`<th style="background:${c1};color:#fff;padding:18px">${x}</th>`).join('')}</tr>${rows.map((r,i)=>`<tr>${r.map((x,j)=>`<td style="color:#222;padding:16px 24px;border-bottom:2px solid #eee;text-align:${j?'right':'left'};font-weight:${j?400:600};background:${i%2?'#f3f3f1':'#fff'}">${x}</td>`).join('')}</tr>`).join('')}</table></div>
+${pills(['Google Sheets','Excel','Instant download'])}</body>`);await p.screenshot({path:f});}
+for(const [f,t,c] of prints){const img='data:image/png;base64,'+require('fs').readFileSync('printables/out/'+f+'-preview.png').toString('base64');
+await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:${c};font-family:system-ui,sans-serif;color:#fff;display:flex;align-items:center;gap:80px;padding:0 110px;box-sizing:border-box">
+<div style="width:760px;flex:none"><h1 style="font-size:120px;margin:0;line-height:1.02">${t}</h1><p style="font-size:50px;opacity:.92;margin:30px 0 0">Printable PDF · A4 & US Letter</p>${pills(['Print at home','GoodNotes ready'])}</div>
+<img src="${img}" style="height:1240px;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:rotate(2deg);background:#fff"></body>`);await p.waitForTimeout(200);await p.screenshot({path:'printables/out/'+f+'-cover.png'});}
+await b.close()})();
