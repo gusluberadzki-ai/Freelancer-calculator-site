@@ -1,0 +1,20 @@
+// node printables/covers8.js: renders 2000x1600 covers for the round-13 batch
+const {chromium}=require('playwright');const path=require('path');
+const sheet=[['templates/products/handmade-cover.png','Handmade Shop Profit Calculator','Marketplace fees · True profit · Suggested prices',['Product','Price','Fees','Profit'],[['Beaded bracelet','18.00','2.76','5.49'],['Scented candle','22.00','3.28','8.02'],['Ceramic mug','30.00','4.23','7.32']],'#d9480f','#ff922b'],
+['templates/products/wedguests-cover.png','Wedding Guest List & Seating','RSVPs · Meal choices · Table plan',['Household','RSVP','Attending','Table'],[['The Patel','Yes','2','5'],['The Chen','Yes','1','4'],['Murphy family','Pending','','']],'#a61e4d','#f06595'],
+['templates/products/sports-cover.png','Sports Team Manager','Squad · Fixtures · Results · Goals · Fees',['Opponent','Score','Result','Points'],[['Riverside FC','3 - 1','W','3'],['Hillview Rangers','2 - 2','D','1'],['Northgate Utd','4 - 0','W','3']],'#2b8a3e','#69db7c'],
+['templates/products/macro-cover.png','Calorie & Macro Tracker','Food library · Daily totals · Targets',['Day','kcal','Protein','vs target'],[['Mon','1,940','148 g','-60'],['Tue','2,085','132 g','+85'],['Wed','1,890','155 g','-110']],'#e67700','#fcc419'],
+['templates/products/rentbuy-cover.png','Rent vs Buy Calculator','30-year comparison · Break-even year',['Year','Buy','Rent','Ahead'],[['1','60,578','75,493','Rent'],['5','134,225','128,477','Buy'],['10','242,452','201,841','Buy']],'#1971c2','#4dabf7']];
+const prints=[['Household-Info-Binder','Household Info Binder','#c92a2a'],['Caregiver-Planner','Caregiver Planner','#0c8599'],['Food-Symptom-Diary','Food & Symptom Diary','#5c940d'],['Kids-Reading-Log','Kids Reading Log','#7048e8'],['Fishing-Log-Book','Fishing Log Book','#1864ab']];
+const pills=t=>`<div style="display:flex;gap:24px;margin-top:56px">${t.map(x=>`<span style="background:rgba(255,255,255,.18);padding:16px 32px;border-radius:50px;font-size:40px">${x}</span>`).join('')}</div>`;
+(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:2000,height:1600}});
+for(const [f,t,s,h,rows,c1,c2] of sheet){await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:linear-gradient(135deg,${c1},${c2});font-family:system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff">
+<h1 style="font-size:110px;margin:0;text-align:center;line-height:1.05;max-width:1800px">${t}</h1><p style="font-size:48px;margin:24px 0 56px;opacity:.92">${s}</p>
+<div style="background:#fff;border-radius:24px;width:1500px;box-shadow:0 30px 80px rgba(0,0,0,.3);overflow:hidden"><table style="width:100%;border-collapse:collapse;font-size:40px">
+<tr>${h.map(x=>`<th style="background:${c1};color:#fff;padding:18px">${x}</th>`).join('')}</tr>${rows.map((r,i)=>`<tr>${r.map((x,j)=>`<td style="color:#222;padding:16px 24px;border-bottom:2px solid #eee;text-align:${j?'right':'left'};font-weight:${j?400:600};background:${i%2?'#f3f3f1':'#fff'}">${x}</td>`).join('')}</tr>`).join('')}</table></div>
+${pills(['Google Sheets','Excel','Instant download'])}</body>`);await p.screenshot({path:f});}
+for(const [f,t,c] of prints){const img='data:image/png;base64,'+require('fs').readFileSync('printables/out/'+f+'-preview.png').toString('base64');
+await p.setContent(`<body style="margin:0;width:2000px;height:1600px;background:${c};font-family:system-ui,sans-serif;color:#fff;display:flex;align-items:center;gap:80px;padding:0 110px;box-sizing:border-box">
+<div style="width:760px;flex:none"><h1 style="font-size:120px;margin:0;line-height:1.02">${t}</h1><p style="font-size:50px;opacity:.92;margin:30px 0 0">Printable PDF · A4 & US Letter</p>${pills(['Print at home','GoodNotes ready'])}</div>
+<img src="${img}" style="height:1240px;border-radius:14px;box-shadow:0 30px 80px rgba(0,0,0,.4);transform:rotate(2deg);background:#fff"></body>`);await p.waitForTimeout(200);await p.screenshot({path:'printables/out/'+f+'-cover.png'});}
+await b.close()})();
